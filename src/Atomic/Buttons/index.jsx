@@ -25,6 +25,8 @@ export const RowButton = styled.button`
     }
 `;
 
+export const RowButton2 = styled(RowButton)`
+    border-radius: ${(props) => (props.bdr ? props.bdr : 150)}px;
 `;
 
 export const CircleButton = styled(RowButton)`
