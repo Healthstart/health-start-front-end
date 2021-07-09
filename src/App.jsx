@@ -6,7 +6,7 @@ import TempPage from './Pages/TempPage';
 
 const App = () => {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename="/6">
             <Switch>
                 <Route path="/" exact component={MainPage} />
                 <Route path="/exercise" component={ExercisePage} />
