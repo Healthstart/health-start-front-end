@@ -1,6 +1,7 @@
 import React from 'react';
+import { Blank } from './Atomic/Blank';
 import { Heading1, Heading2, Heading3 } from './Atomic/Heading';
-import { RowButton, CircleButton } from './Atomic/Buttons';
+import { RowButton, RowButton2 ,CircleButton } from './Atomic/Buttons';
 
 const App = () => {
     return (
@@ -10,6 +11,9 @@ const App = () => {
             <Heading3>제목3 Title3</Heading3>
 
             <RowButton>Row 버튼</RowButton>
+            <Blank />
+            <RowButton2>Row 버튼 2</RowButton2>
+            <Blank />
             <CircleButton>X</CircleButton>
         </div>
     );
