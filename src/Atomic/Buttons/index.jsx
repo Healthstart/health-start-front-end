@@ -18,6 +18,13 @@ export const RowButton = styled.button`
 
     border: none;
     border-radius: ${(props) => (props.bdr ? props.bdr : 15)}px;
+
+    transition: 0.3s;
+    &:hover {
+        transform: translateY(-3px);
+    }
+`;
+
 `;
 
 export const CircleButton = styled(RowButton)`
