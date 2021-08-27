@@ -18,6 +18,7 @@ export const RowButton = styled.button`
 
     border: none;
     border-radius: ${(props) => (props.bdr ? props.bdr : 15)}px;
+    outline: none;
 
     transition: 0.3s;
     &:hover {
