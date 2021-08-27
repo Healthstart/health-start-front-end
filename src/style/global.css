@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+SC:wght@100;200;300;400;500;700&family=Nanum+Gothic:wght@400;700;800&display=swap');
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Encode Sans SC', 'Nanum Gothic', serif;
 }
