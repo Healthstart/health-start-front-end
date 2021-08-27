@@ -14,8 +14,18 @@ const Container = styled.form`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 700px;
+    width: 35%;
     height: 100%;
+
+    border-radius: 0 15px 15px 0;
+    box-shadow: 3px 3px 15px black;
+
+    @media screen and (max-width: 680px) {
+        width: 28%;
+    }
+    @media screen and (max-width: 600px) {
+        width: 500px;
+    }
 `;
 
 const Login = () => {
