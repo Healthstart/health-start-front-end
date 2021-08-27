@@ -3,6 +3,7 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import MainPage from './Pages/MainPage';
 import ExercisePage from './Pages/ExercisePage';
 import TempPage from './Pages/TempPage';
+import LoginPage from './Pages/LoginPage';
 
 const App = () => {
     return (
@@ -10,7 +11,7 @@ const App = () => {
             <Switch>
                 <Route path="/" exact component={MainPage} />
                 <Route path="/exercise" component={ExercisePage} />
-                <Route path="/login" component={TempPage} />
+                <Route path="/login" component={LoginPage} />
                 <Route path="/register" component={TempPage} />
             </Switch>
         </BrowserRouter>
