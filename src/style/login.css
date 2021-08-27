@@ -1,59 +1,59 @@
 @charset "UTF-8";
-*{
+* {
     margin: 0px;
     padding: 0px;
     text-decoration: none;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .loginForm {
     position: absolute;
     width: 700px;
-    height:800px;
+    height: 800px;
     padding: 30px, 20px;
-    background-color:#eeeeee;
+    background-color: #eeeeee;
     text-align: center;
-    top:50%;
-    left:30%;
-    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
     border-radius: 25px;
 }
-.loginForm h2{
+.loginForm h2 {
     text-align: center;
     margin: 200px;
 }
-.idForm{
+.idForm {
     margin: 0px;
     padding: 10px 10px;
 }
-.passForm{
+.passForm {
     margin: 0px;
     padding: 10px 10px;
 }
-.id{
+.id {
     width: 200px;
     height: 35px;
     border-radius: 30px;
     border: none;
 }
-.pw{
+.pw {
     width: 200px;
     height: 35px;
     border-radius: 30px;
     border: none;
 }
 .btn {
-    position:relative;
-    left:7%;
+    position: relative;
+    left: 7%;
     margin-bottom: 40px;
     width: 80px;
-    height:30px;
-    background:rgb(241, 67, 67) ;
+    height: 30px;
+    background: rgb(241, 67, 67);
     background-size: 200%;
-    color:white;
+    color: white;
     font-weight: bold;
-    border:none;
-    cursor:pointer;
-    display:inline;
+    border: none;
+    cursor: pointer;
+    display: inline;
     border-radius: 10px;
 }
 .btn:hover {
