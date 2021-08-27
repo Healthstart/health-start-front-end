@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { Heading3 } from '../Heading';
 
 export const InputForm = styled.input`
-    width: ${(props) => (props.w ? props.w : 300)}px;
-    height: ${(props) => (props.h ? props.h : 45)}px;
+    width: ${(props) => (props.w ? props.w : 400)}px;
+    height: ${(props) => (props.h ? props.h : 50)}px;
     font-size: 1.2rem;
     padding: 0 1.2rem;
     color: #565656;

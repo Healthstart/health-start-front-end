@@ -3,13 +3,10 @@ import styled from 'styled-components';
 import Login from '../Compnents/Login';
 
 const Container = styled.div`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 1520px;
-    height: 768px;
-    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    width: 1920px;
+    height: 100vh;
     background: #efefef;
     box-shadow: 15px 15px 35px #807c7c, -15px -15px 35px #ffffff;
 `;
