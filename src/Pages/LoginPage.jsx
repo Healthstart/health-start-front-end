@@ -11,11 +11,11 @@ const Container = styled.div`
     align-items: center;
     width: 1920px;
     height: 100vh;
-    background: #efefef;
     box-shadow: 15px 15px 35px #807c7c, -15px -15px 35px #ffffff;
 `;
 
 const BackgroundImage = styled.img`
+    z-index: -1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,6 +28,10 @@ const BackgroundImage = styled.img`
     opacity: 0.95;
 `;
 
+const LoadingText = styled.p`
+    z-index: -2;
+`;
+
 const LoginPage = () => {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -36,7 +40,8 @@ const LoginPage = () => {
             <BackgroundImage src={banner} />
             <Login setIsOpen={setIsOpen} />
             <Blank w={5} />
-            Loading to Image...
+            <LoadingText>Loading to Image...</LoadingText>
+
             <Register isOpen={isOpen} setIsOpen={setIsOpen} />
         </Container>
     );
