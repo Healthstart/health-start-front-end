@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Login from '../Compnents/Login';
 import banner from '../Image/banner2.jpg';
+import { Blank } from '../Atomic/Blank';
+import Register from '../Compnents/Register';
 
 const Container = styled.div`
     display: flex;
@@ -9,11 +11,12 @@ const Container = styled.div`
     align-items: center;
     width: 1920px;
     height: 100vh;
-    background: #efefef;
     box-shadow: 15px 15px 35px #807c7c, -15px -15px 35px #ffffff;
 `;
 
 const BackgroundImage = styled.img`
+    object-fit: cover;
+    z-index: -1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,15 +25,24 @@ const BackgroundImage = styled.img`
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
     opacity: 0.95;
 `;
 
+const LoadingText = styled.p`
+    z-index: -2;
+`;
+
 const LoginPage = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
         <Container>
             <BackgroundImage src={banner} />
-            <Login />
+            <Login setIsOpen={setIsOpen} />
+            <Blank w={30} />
+            <LoadingText>Loading to Image...</LoadingText>
+
+            <Register isOpen={isOpen} setIsOpen={setIsOpen} />
         </Container>
     );
 };

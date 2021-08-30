@@ -7,7 +7,6 @@ import { RowButton2 } from '../../Atomic/Buttons';
 import toast from 'react-hot-toast';
 
 const Container = styled.form`
-    z-index: 10;
     display: flex;
     background-color: #eee;
     padding: 2rem;
@@ -28,7 +27,19 @@ const Container = styled.form`
     }
 `;
 
-const Login = () => {
+const LinkRegister = styled.p`
+    color: #444;
+    text-decoration: underline;
+    opacity: 0.8;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.65;
+    }
+`;
+
+const Login = ({ setIsOpen }) => {
     const initialState = {
         email: '',
         password: '',
@@ -52,7 +63,7 @@ const Login = () => {
         /* API Place */
 
         setLoginState((prevState) => initialState);
-        toast.success('[로그인 성공 메세지]');
+        toast.success('로그인 성공!');
     };
 
     return (
@@ -71,7 +82,11 @@ const Login = () => {
             <LabelForm>비밀번호</LabelForm>
             <InputForm placeholder="Password" type="password" value={password} name="password" onChange={handleOnChange} />
 
-            <Blank h={3} />
+            <Blank h={1.5} />
+
+            <LinkRegister onClick={() => setIsOpen((prevState) => true)}>회원가입이 필요하신가요?</LinkRegister>
+
+            <Blank h={2} />
 
             <RowButton2 type="submit">LOGIN</RowButton2>
         </Container>
