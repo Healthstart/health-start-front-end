@@ -63,7 +63,7 @@ const Login = ({ setIsOpen }) => {
         /* API Place */
 
         setLoginState((prevState) => initialState);
-        toast.success('[로그인 성공 메세지]');
+        toast.success('로그인 성공!');
     };
 
     return (
