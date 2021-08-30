@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
-import MainPage from './Pages/MainPage';
+import MainPage from './Pages/Main/MainPage';
 import ExercisePage from './Pages/ExercisePage';
 import TempPage from './Pages/TempPage';
 import LoginPage from './Pages/LoginPage';
