@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Login from '../Compnents/Login';
 import banner from '../Image/banner2.jpg';
+import { Blank } from '../Atomic/Blank';
 
 const Container = styled.div`
     display: flex;
@@ -31,6 +32,8 @@ const LoginPage = () => {
         <Container>
             <BackgroundImage src={banner} />
             <Login />
+            <Blank w={5} />
+            Loading to Image...
         </Container>
     );
 };
