@@ -1,11 +1,38 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import Modal from 'react-modal';
 import { InputForm, LabelForm } from '../../Atomic/Form';
 import { Blank } from '../../Atomic/Blank';
 import { Heading3 } from '../../Atomic/Heading';
 import { RowButton2 } from '../../Atomic/Buttons';
 import toast from 'react-hot-toast';
+
+const OpenModalAnimate = keyframes`
+  0% {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  10% {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+  20% {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+  }
+`;
 
 const ModalContainer = styled(Modal)`
     position: absolute;
@@ -15,6 +42,8 @@ const ModalContainer = styled(Modal)`
     padding: 2rem;
     background-color: #eee;
     outline: none;
+
+    animation: ${OpenModalAnimate} 2s ease-out;
 `;
 
 const Container = styled.form`
