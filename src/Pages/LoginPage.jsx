@@ -15,6 +15,7 @@ const Container = styled.div`
 `;
 
 const BackgroundImage = styled.img`
+    object-fit: cover;
     z-index: -1;
     display: flex;
     justify-content: center;
@@ -24,7 +25,6 @@ const BackgroundImage = styled.img`
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
     opacity: 0.95;
 `;
 
@@ -39,7 +39,7 @@ const LoginPage = () => {
         <Container>
             <BackgroundImage src={banner} />
             <Login setIsOpen={setIsOpen} />
-            <Blank w={5} />
+            <Blank w={30} />
             <LoadingText>Loading to Image...</LoadingText>
 
             <Register isOpen={isOpen} setIsOpen={setIsOpen} />
