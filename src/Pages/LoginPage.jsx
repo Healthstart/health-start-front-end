@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Login from '../Compnents/Login';
 import banner from '../Image/banner2.jpg';
 import { Blank } from '../Atomic/Blank';
+import Register from '../Compnents/Register';
 
 const Container = styled.div`
     display: flex;
@@ -28,12 +29,15 @@ const BackgroundImage = styled.img`
 `;
 
 const LoginPage = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
         <Container>
             <BackgroundImage src={banner} />
-            <Login />
+            <Login setIsOpen={setIsOpen} />
             <Blank w={5} />
             Loading to Image...
+            <Register isOpen={isOpen} setIsOpen={setIsOpen} />
         </Container>
     );
 };
