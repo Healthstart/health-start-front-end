@@ -5,6 +5,7 @@ import { Blank } from '../../Atomic/Blank';
 import { Heading3 } from '../../Atomic/Heading';
 import { RowButton2 } from '../../Atomic/Buttons';
 import toast from 'react-hot-toast';
+import Api from '../../Api';
 
 const Container = styled.form`
     display: flex;
@@ -58,9 +59,10 @@ const Login = ({ setIsOpen }) => {
             toast.error('이메일 혹은 비밀번호가 공백입니다!');
             return;
         }
-        console.log('submit to data', loginState);
 
-        /* API Place */
+        Api.get('/').then((data) => {
+            console.log(data);
+        });
 
         setLoginState((prevState) => initialState);
         toast.success('로그인 성공!');
