@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+// import { NavLink } from 'react-router-dom'
 
 import { LogOut } from 'react-feather';
 import { User } from 'react-feather';
 import { Clock } from "react-feather";
 import { Users } from "react-feather";
 import { PlusCircle } from "react-feather";
+import { background, useMenuState } from '@chakra-ui/react';
 
 const Navbar = styled.div`
     position: absolute;
@@ -21,7 +23,7 @@ const Navbar = styled.div`
     -webkit-box-shadow: 21px 0px 42px -8px rgba(0,0,0,0.05); 
     box-shadow: 21px 0px 42px -8px rgba(0,0,0,0.0.05);    
 `;
- 
+
 const Wrap = styled.div`
     width: 100%;
     height: 100%;
@@ -90,7 +92,7 @@ const MenuList = styled.div`
     /* background-color: #555555; */
 `;
 
-const MenuItem = styled.div`
+const MenuItem = styled.button`
     cursor: pointer;
     align-self: center;
 
@@ -98,12 +100,17 @@ const MenuItem = styled.div`
 
     width: 90%;
     height: 85px;
-
+    background-color: ${props => props.isActive ? '#f0efef' : '#fff'};
+    border: none;
     border-radius: 7px;
     /* background-color: #444; */
     transition: 0.3s;
     &:hover{
-        background-color: #eee;
+        background-color: #f0efef;
+        outline: none;
+    }
+    &:active{
+        transform: scale(1.03);
     }
 `;
 const MenuItemText = styled.h5`
@@ -139,27 +146,41 @@ const Logout = styled.div`
 `;
 
 const Sidemenu = () => {
-    return(
+
+    const [isActive, setIsActive] = useState([true, false, false]);
+    const ChangeMenuState = (menuNum) => {
+        const checkTemp = (temp, i) => {
+            if (temp == i) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        setIsActive(prevState => isActive.map((x, i) => checkTemp(menuNum, i + 1)))
+
+    }
+
+    return (
         <Navbar>
             <Wrap>
                 <Profile>
                     <Usericon>
-                        <User color="gray" size={35}/>
+                        <User color="gray" size={35} />
                     </Usericon>
                     <Username>Alex</Username>
                     <Useremail>alex@gmail.com</Useremail>
                 </Profile>
                 <MenuList>
-                    <MenuItem>
-                        <Clock color="gray" size={25} style={{marginTop: 30 ,marginLeft: 90, marginRight: 10}}/>
+                    <MenuItem key={1} onClick={() => { ChangeMenuState(1) }} isActive={isActive[0]}>
+                        <Clock color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 10 }} />
                         <MenuItemText>루틴실행</MenuItemText>
                     </MenuItem>
-                    <MenuItem>
-                        <Users color="gray" size={25} style={{marginTop: 30 ,marginLeft: 90, marginRight: 13}}/>
+                    <MenuItem key={2} onClick={() => { ChangeMenuState(2) }} isActive={isActive[1]}>
+                        <Users color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 13 }} />
                         <MenuItemText>커뮤니티</MenuItemText>
                     </MenuItem>
-                    <MenuItem>
-                        <PlusCircle color="gray" size={25} style={{marginTop: 30 ,marginLeft: 90, marginRight: 10}}/>
+                    <MenuItem key={3} onClick={() => { ChangeMenuState(3) }} isActive={isActive[2]}>
+                        <PlusCircle color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 10 }} />
                         <MenuItemText>식단추가</MenuItemText>
                     </MenuItem>
                 </MenuList>
