@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-// import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { LogOut } from 'react-feather';
 import { User } from 'react-feather';
@@ -92,27 +92,6 @@ const MenuList = styled.div`
     /* background-color: #555555; */
 `;
 
-const MenuItem = styled.button`
-    cursor: pointer;
-    align-self: center;
-
-    display: flex;
-
-    width: 90%;
-    height: 85px;
-    background-color: ${props => props.isActive ? '#f0efef' : '#fff'};
-    border: none;
-    border-radius: 7px;
-    /* background-color: #444; */
-    transition: 0.3s;
-    &:hover{
-        background-color: #f0efef;
-        outline: none;
-    }
-    &:active{
-        transform: scale(1.03);
-    }
-`;
 const MenuItemText = styled.h5`
     text-align: center;
     line-height: 80px;
@@ -145,8 +124,29 @@ const Logout = styled.div`
     }
 `;
 
-const Sidemenu = () => {
+const Menulink = styled(Link)`
+    cursor: pointer;
+    align-self: center;
 
+    display: flex;
+
+    width: 90%;
+    height: 85px;
+    background-color: ${props => props.isActive ? '#f0efef' : '#fff'};
+    border: none;
+    border-radius: 7px;
+    /* background-color: #444; */
+    transition: 0.3s;
+    &:hover{
+        background-color: #f0efef;
+        outline: none;
+    }
+    &:active{
+        transform: scale(1.03);
+    }
+`;
+
+const Sidemenu = () => {
     const [isActive, setIsActive] = useState([true, false, false]);
     const ChangeMenuState = (menuNum) => {
         const checkTemp = (temp, i) => {
@@ -171,18 +171,18 @@ const Sidemenu = () => {
                     <Useremail>alex@gmail.com</Useremail>
                 </Profile>
                 <MenuList>
-                    <MenuItem key={1} onClick={() => { ChangeMenuState(1) }} isActive={isActive[0]}>
+                    <Menulink Link to={"/exercise"} key={1} onClick={() => { ChangeMenuState(1) }} isActive={isActive[0]}>
                         <Clock color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 10 }} />
                         <MenuItemText>루틴실행</MenuItemText>
-                    </MenuItem>
-                    <MenuItem key={2} onClick={() => { ChangeMenuState(2) }} isActive={isActive[1]}>
+                    </Menulink>
+                    <Menulink Link to={"/exercise"} key={2} onClick={() => { ChangeMenuState(2) }} isActive={isActive[1]}>
                         <Users color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 13 }} />
                         <MenuItemText>커뮤니티</MenuItemText>
-                    </MenuItem>
-                    <MenuItem key={3} onClick={() => { ChangeMenuState(3) }} isActive={isActive[2]}>
+                    </Menulink>
+                    <Menulink Link to={"/exercise"} key={3} onClick={() => { ChangeMenuState(3) }} isActive={isActive[2]}>
                         <PlusCircle color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 10 }} />
                         <MenuItemText>식단추가</MenuItemText>
-                    </MenuItem>
+                    </Menulink>
                 </MenuList>
                 <Logout>
                     <LogOut color="gray" />
