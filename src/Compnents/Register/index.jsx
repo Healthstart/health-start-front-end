@@ -6,6 +6,7 @@ import { Blank } from '../../Atomic/Blank';
 import { Heading3 } from '../../Atomic/Heading';
 import { RowButton2 } from '../../Atomic/Buttons';
 import toast from 'react-hot-toast';
+import Api from '../../Api';
 
 const OpenModalAnimate = keyframes`
   0% {
@@ -72,7 +73,7 @@ const Register = ({ isOpen, setIsOpen }) => {
         setRegisterState((prevState) => ({ ...RegisterState, [name]: value }));
     };
 
-    const handleOnSubmit = (e) => {
+    const handleOnSubmit = async (e) => {
         e.preventDefault();
         if (email.trim() === '' || password.trim() === '' || passwordC.trim() === '' || username.trim() === '') {
             toast.error('공백이 존재합니다!');
@@ -84,9 +85,12 @@ const Register = ({ isOpen, setIsOpen }) => {
             setRegisterState((prevState) => ({ ...prevState, password: '', passwordC: '' }));
             return;
         }
-        console.log('submit to data', RegisterState);
 
-        /* API Place */
+        try {
+            await Api.post('/auth/register', { email, password, username });
+        } catch (err) {
+            throw err;
+        }
 
         setRegisterState((prevState) => initialState);
         setIsOpen((prevState) => false);
