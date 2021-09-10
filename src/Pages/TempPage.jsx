@@ -24,7 +24,7 @@ const TempPage = () => {
                 <Heading2>아직 미구현된 페이지입니다.</Heading2>
                 <Heading3>개발 진행 중</Heading3>
                 <Heading3>
-                    <Back to="/">뒤로가기</Back>
+                    <Back to="/temp">뒤로가기</Back>
                 </Heading3>
             </Content>
         </Page>
