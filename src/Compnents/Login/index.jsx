@@ -53,16 +53,23 @@ const Login = ({ setIsOpen }) => {
         setLoginState((prevState) => ({ ...loginState, [name]: value }));
     };
 
-    const handleOnSubmit = (e) => {
+    const handleOnSubmit = async (e) => {
         e.preventDefault();
         if (email.trim() === '' || password.trim() === '') {
             toast.error('이메일 혹은 비밀번호가 공백입니다!');
             return;
         }
 
-        Api.get('/').then((data) => {
-            console.log(data);
-        });
+        try {
+            const data = await Api.post('/auth/login', { email, password });
+            if (data.data.error) {
+                toast.error(data.data.error);
+                return;
+            }
+            
+        } catch (err) {
+            throw err;
+        }
 
         setLoginState((prevState) => initialState);
         toast.success('로그인 성공!');
