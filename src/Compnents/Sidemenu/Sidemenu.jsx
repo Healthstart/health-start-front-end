@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'
-
 import { LogOut } from 'react-feather';
 import { User } from 'react-feather';
 import { Clock } from "react-feather";
 import { Users } from "react-feather";
 import { PlusCircle } from "react-feather";
 import { Settings } from "react-feather"
-import { background, useMenuState } from '@chakra-ui/react';
 
 const Navbar = styled.div`
     position: absolute;
 
     width: 340px;
     height: 100%;
-    background-color #fff;
+    background-color :#fff;
 
     transform: translateY(-50%);
     top: 50%;
@@ -148,11 +146,11 @@ const Menulink = styled(Link)`
     }
 `;
 
-const Sidemenu = () => {
+const Sidemenu = ({ match }) => {
     const [isActive, setIsActive] = useState([true, false, false, false]);
     const ChangeMenuState = (menuNum) => {
         const checkTemp = (temp, i) => {
-            if (temp == i) {
+            if (temp === i) {
                 return true;
             } else {
                 return false;
@@ -173,19 +171,19 @@ const Sidemenu = () => {
                     <Useremail>alex@gmail.com</Useremail>
                 </Profile>
                 <MenuList>
-                    <Menulink Link to={"/profile"} key={3} onClick={() => { ChangeMenuState(1) }} isActive={isActive[0]}>
+                    <Menulink Link to={`${match.path}/profile`} key={3} onClick={() => { ChangeMenuState(1) }} isActive={isActive[0]}>
                         <Settings color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 10 }} />
                         <MenuItemText>프로파일</MenuItemText>
                     </Menulink>
-                    <Menulink Link to={"/temp"} key={1} onClick={() => { ChangeMenuState(2) }} isActive={isActive[1]}>
+                    <Menulink Link to={`${match.path}/temp`} key={1} onClick={() => { ChangeMenuState(2) }} isActive={isActive[1]}>
                         <Clock color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 10 }} />
                         <MenuItemText>루틴실행</MenuItemText>
                     </Menulink>
-                    <Menulink Link to={"/temp"} key={2} onClick={() => { ChangeMenuState(3) }} isActive={isActive[2]}>
+                    <Menulink Link to={`${match.path}/temp`} key={2} onClick={() => { ChangeMenuState(3) }} isActive={isActive[2]}>
                         <Users color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 13 }} />
                         <MenuItemText>커뮤니티</MenuItemText>
                     </Menulink>
-                    <Menulink Link to={"/temp"} key={3} onClick={() => { ChangeMenuState(4) }} isActive={isActive[3]}>
+                    <Menulink Link to={`${match.path}/temp`} key={3} onClick={() => { ChangeMenuState(4) }} isActive={isActive[3]}>
                         <PlusCircle color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 10 }} />
                         <MenuItemText>식단추가</MenuItemText>
                     </Menulink>
