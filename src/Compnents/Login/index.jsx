@@ -61,18 +61,14 @@ const Login = ({ setIsOpen }) => {
         }
 
         try {
-            const data = await Api.post('/auth/login', { email, password });
-            if (data.data.error) {
-                toast.error(data.data.error);
-                return;
-            }
-            
+            await Api.post('/auth/login', { email, password });
+            toast.success('로그인 성공!');
+            setLoginState((prevState) => initialState);
         } catch (err) {
+            toast.error(err.response.data.error);
+            setLoginState((prevState) => ({ ...prevState, password: '' }));
             throw err;
         }
-
-        setLoginState((prevState) => initialState);
-        toast.success('로그인 성공!');
     };
 
     return (
