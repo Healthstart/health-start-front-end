@@ -6,6 +6,7 @@ import { Blank } from '../../Atomic/Blank';
 import { Heading3 } from '../../Atomic/Heading';
 import { RowButton2 } from '../../Atomic/Buttons';
 import toast from 'react-hot-toast';
+import Api from '../../Api';
 
 const OpenModalAnimate = keyframes`
   0% {
@@ -72,7 +73,7 @@ const Register = ({ isOpen, setIsOpen }) => {
         setRegisterState((prevState) => ({ ...RegisterState, [name]: value }));
     };
 
-    const handleOnSubmit = (e) => {
+    const handleOnSubmit = async (e) => {
         e.preventDefault();
         if (email.trim() === '' || password.trim() === '' || passwordC.trim() === '' || username.trim() === '') {
             toast.error('공백이 존재합니다!');
@@ -84,13 +85,17 @@ const Register = ({ isOpen, setIsOpen }) => {
             setRegisterState((prevState) => ({ ...prevState, password: '', passwordC: '' }));
             return;
         }
-        console.log('submit to data', RegisterState);
 
-        /* API Place */
+        try {
+            await Api.post('/auth/register', { email, password, username });
+            setIsOpen((prevState) => false);
+            toast.success('회원가입 성공!');
+        } catch (err) {
+            toast.error(err.response.data.error);
+            throw err;
+        }
 
         setRegisterState((prevState) => initialState);
-        setIsOpen((prevState) => false);
-        toast.success('회원가입 성공!');
     };
 
     return (
@@ -102,6 +107,7 @@ const Register = ({ isOpen, setIsOpen }) => {
                     backgroundColor: 'rgba(0,0,0, 0.4)',
                 },
             }}
+            ariaHideApp={false}
         >
             <Container onSubmit={(e) => handleOnSubmit(e)}>
                 <Heading3 fSize={32} fWei={600} color="#565656">
