@@ -144,8 +144,7 @@ const Menulink = styled(Link)`
     text-decoration: none;
     transition: 0.3s;
     &:hover{
-        background-color: #f3f3f3;
-        outline: none;
+        border: 1px solid #272727;
     }
     &:active{
         transform: scale(1.03);
