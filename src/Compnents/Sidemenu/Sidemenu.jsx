@@ -95,10 +95,13 @@ const MenuList = styled.div`
 
 const MenuItemText = styled.h5`
     text-align: center;
-    line-height: 80px;
+    line-height: 6px;
+    
     font-size: 22px;
     font-weight: 600;
     color: #858585;
+
+    text-decoration: none; 
 `;
 
 const Logout = styled.div`
@@ -133,10 +136,12 @@ const Menulink = styled(Link)`
 
     width: 90%;
     height: 85px;
+
     background-color: ${props => props.isActive ? '#f0efef' : '#fff'};
     border: none;
     border-radius: 7px;
-    /* background-color: #444; */
+
+    text-decoration: none;
     transition: 0.3s;
     &:hover{
         background-color: #f3f3f3;
