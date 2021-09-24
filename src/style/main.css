@@ -32,7 +32,7 @@ section {
     align-items: center;
 
     background-color: #ddd;
-}
+}   
 section div:hover {
     opacity: 0.7;
 }
