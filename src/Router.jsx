@@ -11,9 +11,9 @@ const Router = ({ match }) => {
             <Dashboard>
                 <Sidemenu match={match} />
                 <Switch>
-                    <Route path={`${match.path}/`} component={ProfilePage} />
-                    <Route path={`${match.path}/exercise`} component={TempPage} />
-                    <Route path={`${match.path}/temp`} component={TempPage} />
+                    <PermissionRoute path={`${match.path}/`} component={ProfilePage} />
+                    <PermissionRoute path={`${match.path}/exercise`} component={TempPage} />
+                    <PermissionRoute path={`${match.path}/temp`} component={TempPage} />
                 </Switch>
             </Dashboard>
         </Background>
