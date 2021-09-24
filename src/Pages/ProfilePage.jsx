@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Page } from '../Atomic/Background';
 import { Line } from 'react-chartjs-2';
@@ -33,12 +33,12 @@ const ProfilePage = () => {
     const data = {
         labels: ['1', '2', '3', '4', '5', '6'],
         datasets: [
-            {   
+            {
                 data: [2, 9, 7, 5, 7, 6],
                 fill: false,
                 // backgroundColor: 'rgb(255, 74, 113, 0.3)',
                 borderColor: 'rgba(255, 99, 132, 0.2)',
-                tension: 0.4
+                tension: 0.4,
             },
         ],
     };
@@ -58,15 +58,15 @@ const ProfilePage = () => {
                 top: 20,
                 left: 30,
                 right: 40,
-                bottom: 0
-            }
-        }
+                bottom: 0,
+            },
+        },
     };
 
     return (
         <Page>
             <Card>
-                <Line data={data} options={options} ></Line>
+                <Line data={data} options={options}></Line>
             </Card>
         </Page>
     );
