@@ -28,7 +28,7 @@ const PermissionPage = () => {
                 <Heading1>권한이 없습니다.</Heading1>
                 <Heading3>로그인이 필요합니다.</Heading3>
                 <Heading3>
-                    <StyledLink to="/login">로그인 하러가기</StyledLink>
+                    <StyledLink to="/">로그인 하러가기</StyledLink>
                 </Heading3>
             </Content>
         </Container>

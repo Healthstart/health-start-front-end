@@ -32,7 +32,7 @@ const Logout = () => {
                 <Heading1>로그아웃</Heading1>
                 <Heading3>로그아웃이 성공적으로 완료되었습니다.</Heading3>
                 <Heading3>
-                    <StyledLink to="/login">로그인 하러가기</StyledLink>
+                    <StyledLink to="/">로그인 하러가기</StyledLink>
                 </Heading3>
             </Content>
         </Container>

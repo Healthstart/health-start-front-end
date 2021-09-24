@@ -1,9 +1,10 @@
 import React from 'react';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import { Background, Dashboard } from './Atomic/Background';
 import ProfilePage from './Pages/ProfilePage';
 import TempPage from './Pages/TempPage';
 import Sidemenu from './Compnents/Sidemenu/Sidemenu';
+import PermissionRoute from './Compnents/Route/PermissionRoute';
 
 const Router = ({ match }) => {
     return (
@@ -11,7 +12,7 @@ const Router = ({ match }) => {
             <Dashboard>
                 <Sidemenu match={match} />
                 <Switch>
-                    <PermissionRoute path={`${match.path}/`} component={ProfilePage} />
+                    <PermissionRoute path={`${match.path}/`} exact component={ProfilePage} />
                     <PermissionRoute path={`${match.path}/exercise`} component={TempPage} />
                     <PermissionRoute path={`${match.path}/temp`} component={TempPage} />
                 </Switch>
