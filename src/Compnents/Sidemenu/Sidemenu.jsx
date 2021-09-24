@@ -95,7 +95,7 @@ const MenuList = styled.div`
 
 const MenuItemText = styled.h5`
     text-align: center;
-    line-height: 6px;
+    line-height: 80px;
     
     font-size: 22px;
     font-weight: 600;
@@ -138,13 +138,13 @@ const Menulink = styled(Link)`
     height: 85px;
 
     background-color: ${props => props.isActive ? '#f0efef' : '#fff'};
-    border: none;
+    border: 1px solid rgba(0,0,0,0);
     border-radius: 7px;
 
     text-decoration: none;
     transition: 0.3s;
     &:hover{
-        border: 1px solid #272727;
+        border: 1px solid #808080;
     }
     &:active{
         transform: scale(1.03);
