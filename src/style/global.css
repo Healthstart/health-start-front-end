@@ -1,11 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+SC:wght@100;200;300;400;500;700&family=Nanum+Gothic:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 
 * {
     box-sizing: border-box;
+    
+    margin: 0;
+    padding: 0;
 }
 
 body {
     font-family: 'Encode Sans SC', 'Nanum Gothic', serif;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 code {

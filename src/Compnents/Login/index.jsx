@@ -5,6 +5,8 @@ import { Blank } from '../../Atomic/Blank';
 import { Heading3 } from '../../Atomic/Heading';
 import { RowButton2 } from '../../Atomic/Buttons';
 import toast from 'react-hot-toast';
+import Api from '../../Api';
+import { setToken } from '../../Utils/managesToken';
 
 const Container = styled.form`
     display: flex;
@@ -52,18 +54,23 @@ const Login = ({ setIsOpen }) => {
         setLoginState((prevState) => ({ ...loginState, [name]: value }));
     };
 
-    const handleOnSubmit = (e) => {
+    const handleOnSubmit = async (e) => {
         e.preventDefault();
         if (email.trim() === '' || password.trim() === '') {
             toast.error('이메일 혹은 비밀번호가 공백입니다!');
             return;
         }
-        console.log('submit to data', loginState);
 
-        /* API Place */
-
-        setLoginState((prevState) => initialState);
-        toast.success('로그인 성공!');
+        try {
+            const data = await Api.post('/auth/login', { email, password });
+            setToken(data.data.token);
+            toast.success('로그인 성공!');
+            setLoginState((prevState) => initialState);
+        } catch (err) {
+            toast.error(err.response.data.error);
+            setLoginState((prevState) => ({ ...prevState, password: '' }));
+            throw err;
+        }
     };
 
     return (

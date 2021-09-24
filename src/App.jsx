@@ -1,16 +1,17 @@
 import React from 'react';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
-import ExercisePage from './Pages/ExercisePage';
+import { Route, BrowserRouter } from 'react-router-dom';
+import Router from './Router';
 import LoginPage from './Pages/LoginPage';
+import PublicRoute from './Compnents/Route/PublicRoute';
+import Logout from './Compnents/Logout';
+import PermissionRoute from './Compnents/Route/PermissionRoute';
 
 const App = () => {
     return (
         <BrowserRouter basename="/6">
-            <Switch>
-                <Route path="/" exact component={LoginPage} />
-                <Route path="/exercise" component={ExercisePage} />
-                <Route path="/login" component={LoginPage} />
-            </Switch>
+            <PublicRoute path="/" exact component={LoginPage} />
+            <Route path="/logout" component={Logout} />
+            <PermissionRoute path="/content" component={Router} />
         </BrowserRouter>
     );
 };
