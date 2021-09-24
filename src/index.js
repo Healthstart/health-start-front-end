@@ -10,8 +10,9 @@ dotenv.config();
 ReactDOM.render(
     <React.StrictMode>
         <App />
-
+        
         <Toaster />
     </React.StrictMode>,
     document.getElementById('root')
 );
+    
