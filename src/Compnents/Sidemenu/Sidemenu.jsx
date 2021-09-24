@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { LogOut } from 'react-feather';
 import { User } from 'react-feather';
-import { Clock } from "react-feather";
-import { Users } from "react-feather";
-import { PlusCircle } from "react-feather";
-import { Settings } from "react-feather"
+import { Clock } from 'react-feather';
+import { Users } from 'react-feather';
+import { PlusCircle } from 'react-feather';
+import { Settings } from 'react-feather';
 
 const Navbar = styled.div`
     position: absolute;
 
     width: 340px;
     height: 100%;
-    background-color :#fff;
+    background-color: #fff;
 
     transform: translateY(-50%);
     top: 50%;
 
     border-radius: 20px;
-    -webkit-box-shadow: 21px 0px 42px -8px rgba(0,0,0,0.05); 
-    box-shadow: 21px 0px 42px -8px rgba(0,0,0,0.0.05);    
+    -webkit-box-shadow: 21px 0px 42px -8px rgba(0, 0, 0, 0.05);
+    box-shadow: 21px 0px 42px -8px rgba(0, 0, 0, 0.05);
 `;
 
 const Wrap = styled.div`
@@ -49,14 +49,12 @@ const Usericon = styled.div`
     width: 70px;
     height: 70px;
 
-    display: flex;    
+    display: flex;
     align-items: center;
     justify-content: center;
 
     border-radius: 50%;
     background-color: #f1f1f1;
-
-    
 `;
 
 const Username = styled.p`
@@ -96,12 +94,12 @@ const MenuList = styled.div`
 const MenuItemText = styled.h5`
     text-align: center;
     line-height: 80px;
-    
+
     font-size: 22px;
     font-weight: 600;
     color: #858585;
 
-    text-decoration: none; 
+    text-decoration: none;
 `;
 
 const Logout = styled.div`
@@ -116,13 +114,13 @@ const Logout = styled.div`
     border-radius: 10px;
     background-color: #f3f3f5;
 
-    display: flex;    
+    display: flex;
     align-items: center;
     justify-content: center;
 
     cursor: pointer;
     transition: 0.4s;
-    &:hover{
+    &:hover {
         background-color: #e3e3e9;
         transform: translateX(5px);
     }
@@ -137,16 +135,16 @@ const Menulink = styled(Link)`
     width: 90%;
     height: 85px;
 
-    background-color: ${props => props.isActive ? '#f0efef' : '#fff'};
-    border: 1px solid rgba(0,0,0,0);
+    background-color: ${(props) => (props.isActive ? '#f0efef' : '#fff')};
+    border: 1px solid rgba(0, 0, 0, 0);
     border-radius: 7px;
 
     text-decoration: none;
     transition: 0.3s;
-    &:hover{
+    &:hover {
         border: 1px solid #808080;
     }
-    &:active{
+    &:active {
         transform: scale(1.03);
         background-color: #c9c9c9;
     }
@@ -161,10 +159,9 @@ const Sidemenu = ({ match }) => {
             } else {
                 return false;
             }
-        }
-        setIsActive(prevState => isActive.map((x, i) => checkTemp(menuNum, i + 1)))
-
-    }
+        };
+        setIsActive((prevState) => isActive.map((x, i) => checkTemp(menuNum, i + 1)));
+    };
 
     return (
         <Navbar>
@@ -177,19 +174,47 @@ const Sidemenu = ({ match }) => {
                     <Useremail>alex@gmail.com</Useremail>
                 </Profile>
                 <MenuList>
-                    <Menulink Link to={`${match.path}/profile`} onClick={() => { ChangeMenuState(1) }} isActive={isActive[0]}>
+                    <Menulink
+                        Link
+                        to={`${match.path}/`}
+                        onClick={() => {
+                            ChangeMenuState(1);
+                        }}
+                        isActive={isActive[0]}
+                    >
                         <Settings color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 10 }} />
                         <MenuItemText>프로파일</MenuItemText>
                     </Menulink>
-                    <Menulink Link to={`${match.path}/temp`} onClick={() => { ChangeMenuState(2) }} isActive={isActive[1]}>
+                    <Menulink
+                        Link
+                        to={`${match.path}/temp`}
+                        onClick={() => {
+                            ChangeMenuState(2);
+                        }}
+                        isActive={isActive[1]}
+                    >
                         <Clock color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 10 }} />
                         <MenuItemText>루틴실행</MenuItemText>
                     </Menulink>
-                    <Menulink Link to={`${match.path}/temp`} onClick={() => { ChangeMenuState(3) }} isActive={isActive[2]}>
+                    <Menulink
+                        Link
+                        to={`${match.path}/temp`}
+                        onClick={() => {
+                            ChangeMenuState(3);
+                        }}
+                        isActive={isActive[2]}
+                    >
                         <Users color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 13 }} />
                         <MenuItemText>커뮤니티</MenuItemText>
                     </Menulink>
-                    <Menulink Link to={`${match.path}/temp`} onClick={() => { ChangeMenuState(4) }} isActive={isActive[3]}>
+                    <Menulink
+                        Link
+                        to={`${match.path}/temp`}
+                        onClick={() => {
+                            ChangeMenuState(4);
+                        }}
+                        isActive={isActive[3]}
+                    >
                         <PlusCircle color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 10 }} />
                         <MenuItemText>식단추가</MenuItemText>
                     </Menulink>
@@ -200,6 +225,6 @@ const Sidemenu = ({ match }) => {
             </Wrap>
         </Navbar>
     );
-}
+};
 
 export default Sidemenu;
