@@ -1,20 +1,11 @@
-import Cookies from 'universal-cookie';
-
-const cookies = new Cookies();
-
 export const getToken = () => {
-    const token = cookies.get('token');
-    console.log(token);
-    return token;
-};
-
-export const removeToken = () => {
-    cookies.remove('token');
+    return localStorage.getItem('token');
 };
 
 export const setToken = (token) => {
-    cookies.set('token', token, {
-        path: '/',
-        expires: Math.floor(Date.now() / 1000) + 60 * 60,
-    });
+    localStorage.setItem('token', token);
+};
+
+export const removeToken = () => {
+    localStorage.removeItem('token');
 };

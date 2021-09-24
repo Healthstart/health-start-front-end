@@ -6,7 +6,7 @@ import { Heading3 } from '../../Atomic/Heading';
 import { RowButton2 } from '../../Atomic/Buttons';
 import toast from 'react-hot-toast';
 import Api from '../../Api';
-import { getToken, setToken } from '../../Utils/managesToken';
+import { setToken } from '../../Utils/managesToken';
 
 const Container = styled.form`
     display: flex;
@@ -62,10 +62,9 @@ const Login = ({ setIsOpen }) => {
         }
 
         try {
-            const token = await Api.post('/auth/login', { email, password });
-            await setToken(token);
+            const data = await Api.post('/auth/login', { email, password });
+            setToken(data.data.token);
             toast.success('로그인 성공!');
-            getToken();
             setLoginState((prevState) => initialState);
         } catch (err) {
             toast.error(err.response.data.error);
