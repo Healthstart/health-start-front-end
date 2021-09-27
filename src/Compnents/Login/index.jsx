@@ -7,6 +7,7 @@ import { RowButton2 } from '../../Atomic/Buttons';
 import toast from 'react-hot-toast';
 import Api from '../../Api';
 import { setToken } from '../../Utils/managesToken';
+import { useHistory } from 'react-router';
 
 const Container = styled.form`
     display: flex;
@@ -48,6 +49,7 @@ const Login = ({ setIsOpen }) => {
     };
     const [loginState, setLoginState] = useState(initialState);
     const { email, password } = loginState;
+    const history = useHistory();
 
     const handleOnChange = (e) => {
         const { name, value } = e.target;
@@ -66,6 +68,9 @@ const Login = ({ setIsOpen }) => {
             setToken(data.data.token);
             toast.success('로그인 성공!');
             setLoginState((prevState) => initialState);
+            history.push({
+                pathname: '/content',
+            });
         } catch (err) {
             toast.error(err.response.data.error);
             setLoginState((prevState) => ({ ...prevState, password: '' }));
