@@ -188,7 +188,7 @@ const Sidemenu = ({ match }) => {
                     </Menulink>
                     <Menulink
                         Link
-                        to={`${match.path}/temp`}
+                        to={`${match.path}/exercise`}
                         onClick={() => {
                             ChangeMenuState(2);
                         }}
