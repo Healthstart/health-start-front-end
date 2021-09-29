@@ -102,7 +102,7 @@ const MenuItemText = styled.h5`
     text-decoration: none;
 `;
 
-const Logout = styled.div`
+const Logout = styled(Link)`
     position: absolute;
 
     bottom: 20px;
@@ -219,7 +219,7 @@ const Sidemenu = ({ match }) => {
                         <MenuItemText>식단추가</MenuItemText>
                     </Menulink>
                 </MenuList>
-                <Logout>
+                <Logout to="/logout">
                     <LogOut color="gray" />
                 </Logout>
             </Wrap>
