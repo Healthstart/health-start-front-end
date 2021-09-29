@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { LogOut } from 'react-feather';
@@ -7,6 +7,7 @@ import { Clock } from 'react-feather';
 import { Users } from 'react-feather';
 import { PlusCircle } from 'react-feather';
 import { Settings } from 'react-feather';
+import Api from '../../Api';
 
 const Navbar = styled.div`
     position: absolute;
@@ -152,6 +153,11 @@ const Menulink = styled(Link)`
 
 const Sidemenu = ({ match }) => {
     const [isActive, setIsActive] = useState([true, false, false, false]);
+    const [userInfo, setUserInfo] = useState({
+        name: '',
+        sub_date: '',
+    });
+
     const ChangeMenuState = (menuNum) => {
         const checkTemp = (temp, i) => {
             if (temp === i) {
@@ -162,6 +168,17 @@ const Sidemenu = ({ match }) => {
         };
         setIsActive((prevState) => isActive.map((x, i) => checkTemp(menuNum, i + 1)));
     };
+
+    useEffect(() => {
+        Api.get('/profile').then(
+            (data) => {
+                console.log(data);
+            },
+            (err) => {
+                console.log(err);
+            }
+        );
+    }, []);
 
     return (
         <Navbar>
