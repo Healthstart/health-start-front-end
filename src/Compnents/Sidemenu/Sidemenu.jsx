@@ -169,16 +169,23 @@ const Sidemenu = ({ match }) => {
         setIsActive((prevState) => isActive.map((x, i) => checkTemp(menuNum, i + 1)));
     };
 
+    const fetchProfile = async () => {
+        const data = await Api.get('/profile');
+        const { name, sub_date } = data.data.data;
+
+        setUserInfo((prevState) => ({ name, sub_date }));
+    };
+
     useEffect(() => {
-        Api.get('/profile').then(
-            (data) => {
-                console.log(data);
-            },
-            (err) => {
-                console.log(err);
-            }
-        );
+        fetchProfile();
     }, []);
+
+    const { name, sub_date } = userInfo;
+
+    const dateCul = () => {
+        const [y, m, d] = sub_date.slice(0, 10).split('-');
+        return `${y}년 ${m}월 ${d}일`;
+    };
 
     return (
         <Navbar>
@@ -187,8 +194,8 @@ const Sidemenu = ({ match }) => {
                     <Usericon>
                         <User color="gray" size={35} />
                     </Usericon>
-                    <Username>Alex</Username>
-                    <Useremail>alex@gmail.com</Useremail>
+                    <Username>{name}</Username>
+                    <Useremail>가입날짜: {dateCul()}</Useremail>
                 </Profile>
                 <MenuList>
                     <Menulink
