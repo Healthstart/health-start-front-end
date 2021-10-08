@@ -197,20 +197,25 @@ const RoutinePage = ({ mm, ss }) => {
     }, [minutes, seconds]);
 
     const [RoutineStack, setRoutineStack] = useState(0);
-    const AnimatedPage = (index) => {
+    const CardOut = "y: -500";
+    const MainCardIn = {
+        y: -300,
+        scale: 1.3
+    };
+    const AnimatedPage = (index, routine.name) => {
         if(index + RoutineStack == 0){
             return(<RoutineBox animate={{ y: -500 }}>{routine.name}</RoutineBox>)
         }
         if(index + RoutineStack == 1){
-            return(<RoutineBox animate={{ x: -300 }}>{routine.name}</RoutineBox>)
+            return(<RoutineBox animate={{ y: -300, scale: 2 }}>{routine.name}</RoutineBox>)
         }
         if(index + RoutineStack == 2){
-            return(<RoutineBox animate={{ x: -300 }}>{routine.name}</RoutineBox>)
-        }
+            return(<RoutineBox animate={{ x: -300 }}>{name}</RoutineBox>)
+        }routine.name
         
     }
     const RoutineList = routine.map((routine, index) => 
-        AnimatedPage(index)
+        AnimatedPage(index, routine.name)
         );
 
     return (
