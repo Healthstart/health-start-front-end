@@ -71,6 +71,7 @@ const Login = ({ setIsOpen }) => {
             history.push({
                 pathname: '/content',
             });
+            window.location.reload();
         } catch (err) {
             toast.error(err.response.data.error);
             setLoginState((prevState) => ({ ...prevState, password: '' }));
