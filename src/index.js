@@ -4,15 +4,17 @@ import './style/global.css';
 import App from './App';
 import { Toaster } from 'react-hot-toast';
 import dotenv from 'dotenv';
+import { ProfileProvider } from './Hooks/useProfile';
 
 dotenv.config();
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />
-        
-        <Toaster />
+        <ProfileProvider>
+            <App />
+
+            <Toaster />
+        </ProfileProvider>
     </React.StrictMode>,
     document.getElementById('root')
 );
-    
