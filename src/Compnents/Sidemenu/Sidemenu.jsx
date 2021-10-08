@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { LogOut } from 'react-feather';
@@ -7,6 +7,7 @@ import { Clock } from 'react-feather';
 import { Users } from 'react-feather';
 import { PlusCircle } from 'react-feather';
 import { Settings } from 'react-feather';
+import Api from '../../Api';
 
 const Navbar = styled.div`
     position: absolute;
@@ -152,6 +153,11 @@ const Menulink = styled(Link)`
 
 const Sidemenu = ({ match }) => {
     const [isActive, setIsActive] = useState([true, false, false, false]);
+    const [userInfo, setUserInfo] = useState({
+        name: '',
+        sub_date: '',
+    });
+
     const ChangeMenuState = (menuNum) => {
         const checkTemp = (temp, i) => {
             if (temp === i) {
@@ -163,6 +169,24 @@ const Sidemenu = ({ match }) => {
         setIsActive((prevState) => isActive.map((x, i) => checkTemp(menuNum, i + 1)));
     };
 
+    const fetchProfile = async () => {
+        const data = await Api.get('/profile');
+        const { name, sub_date } = data.data.data;
+
+        setUserInfo((prevState) => ({ name, sub_date }));
+    };
+
+    useEffect(() => {
+        fetchProfile();
+    }, []);
+
+    const { name, sub_date } = userInfo;
+
+    const dateCul = () => {
+        const [y, m, d] = sub_date.slice(0, 10).split('-');
+        return `${y}년 ${m}월 ${d}일`;
+    };
+
     return (
         <Navbar>
             <Wrap>
@@ -170,8 +194,8 @@ const Sidemenu = ({ match }) => {
                     <Usericon>
                         <User color="gray" size={35} />
                     </Usericon>
-                    <Username>Alex</Username>
-                    <Useremail>alex@gmail.com</Useremail>
+                    <Username>{name}</Username>
+                    <Useremail>가입날짜: {dateCul()}</Useremail>
                 </Profile>
                 <MenuList>
                     <Menulink
