@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Page } from '../Atomic/Background';
 import RoutinTImerIcon from '../Image/RoutinTimerIcon.png';
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 // import Api from "../Api";
-
 
 const TitleTopWrap = styled.div`
     width: 100%;
@@ -99,7 +98,7 @@ const RoutineSection = styled.div`
 
     margin-top: 10px;
 
-    background-color: #cfcfcf; 
+    background-color: #cfcfcf;
     border-radius: 10px;
 
     display: flex;
@@ -121,7 +120,7 @@ const RoutineCenter = styled.div`
 const RoutineBox = styled(motion.div)`
     width: 280px;
     height: 350px;
-    
+
     margin-right: 50px;
     align-self: center;
 
@@ -140,44 +139,41 @@ const RoutinePage = ({ mm, ss }) => {
     const [minutes, setMinutes] = useState(parseInt(2));
     const [seconds, setSeconds] = useState(parseInt(0));
     const [timerState, setTimerState] = useState(false);
-
-    const routine = [
+    const [routine, setRoutine] = useState([
         {
-            name: "스트레칭",
-            count: 10    
+            name: '스트레칭',
+            count: 10,
         },
         {
-            name: "스쿼트",
-            count: 20
+            name: '스쿼트',
+            count: 20,
         },
         {
-            name: "오호호",
-            count: 11    
+            name: '오호호',
+            count: 11,
         },
         {
-            name: "무야호",
-            count: 12    
+            name: '무야호',
+            count: 12,
         },
         {
-            name: "응애",
-            count: 13    
+            name: '응애',
+            count: 13,
         },
         {
-            name: "잏히",
-            count: 14    
+            name: '잏히',
+            count: 14,
         },
         {
-            name: "오렌지쥬스",
-            count: 15    
+            name: '오렌지쥬스',
+            count: 15,
         },
-    ]
-
+    ]);
 
     useEffect(() => {
         console.log('마ㅏ');
         if (timerState == false) {
             console.log('타이머 안 움직임');
-            
         } else {
             const CountDown = setInterval(() => {
                 if (seconds > 0) {
@@ -197,26 +193,30 @@ const RoutinePage = ({ mm, ss }) => {
     }, [minutes, seconds]);
 
     const [RoutineStack, setRoutineStack] = useState(0);
-    const CardOut = "y: -500";
-    const MainCardIn = {
-        y: -300,
-        scale: 1.3
+    const [isAnimate, setIsAnimate] = useState(false);
+
+    const AnimatedPage = (index, name) => {
+        if (index === RoutineStack) {
+            return <RoutineBox animate={{ y: isAnimate ? -500 : 0 }}>{name}</RoutineBox>;
+        }
+        if (index === RoutineStack + 1) {
+            return <RoutineBox animate={{ x: isAnimate ? -300 : 0, scale: isAnimate ? 1.2 : 1 }}>{name}</RoutineBox>;
+        }
+        if (index >= RoutineStack + 2) {
+            return <RoutineBox animate={{ x: isAnimate ? -300 : 0 }}>{name}</RoutineBox>;
+        }
     };
-    const AnimatedPage = (index, routine.name) => {
-        if(index + RoutineStack == 0){
-            return(<RoutineBox animate={{ y: -500 }}>{routine.name}</RoutineBox>)
-        }
-        if(index + RoutineStack == 1){
-            return(<RoutineBox animate={{ y: -300, scale: 2 }}>{routine.name}</RoutineBox>)
-        }
-        if(index + RoutineStack == 2){
-            return(<RoutineBox animate={{ x: -300 }}>{name}</RoutineBox>)
-        }routine.name
-        
-    }
-    const RoutineList = routine.map((routine, index) => 
-        AnimatedPage(index, routine.name)
-        );
+
+    const RoutineList = routine.map((routine, index) => AnimatedPage(index, routine.name));
+
+    const Effeted = () => {
+        setIsAnimate(true);
+        setRoutineStack(RoutineStack + 1);
+
+        console.log(routine);
+        console.log(RoutineStack);
+        console.log(isAnimate);
+    };
 
     return (
         <Page>
@@ -231,7 +231,7 @@ const RoutinePage = ({ mm, ss }) => {
                         <TimerText>
                             {minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}
                         </TimerText>
-                        <TimerButton>완료</TimerButton>
+                        <TimerButton onClick={() => Effeted()}>완료</TimerButton>
                     </TimerBox>
                 </TimerSection>
                 <RoutineSection>
