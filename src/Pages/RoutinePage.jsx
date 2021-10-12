@@ -102,6 +102,7 @@ const RoutineSection = styled.div`
     border-radius: 10px;
 
     display: flex;
+    overflow: hidden;
 `;
 
 const RoutineCenter = styled.div`
@@ -196,14 +197,11 @@ const RoutinePage = ({ mm, ss }) => {
     const [isAnimate, setIsAnimate] = useState(false);
 
     const AnimatedPage = (index, name) => {
+        if (index !== RoutineStack) {
+            return <RoutineBox animate={{ x: isAnimate ? (RoutineStack * -300) : 0 }}>{name}</RoutineBox>;
+        }
         if (index === RoutineStack) {
-            return <RoutineBox animate={{ y: isAnimate ? -500 : 0 }}>{name}</RoutineBox>;
-        }
-        if (index === RoutineStack + 1) {
-            return <RoutineBox animate={{ x: isAnimate ? -300 : 0, scale: isAnimate ? 1.2 : 1 }}>{name}</RoutineBox>;
-        }
-        if (index >= RoutineStack + 2) {
-            return <RoutineBox animate={{ x: isAnimate ? -300 : 0 }}>{name}</RoutineBox>;
+            return <RoutineBox animate={{ x: isAnimate ? (RoutineStack * -300) : 0, scale: isAnimate ? 1.2 : 1 }}>{name}</RoutineBox>;
         }
     };
 
