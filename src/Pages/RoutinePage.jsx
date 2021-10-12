@@ -139,7 +139,7 @@ const TimerIcon = styled.img`
 const RoutinePage = ({ mm, ss }) => {
     const [minutes, setMinutes] = useState(parseInt(2));
     const [seconds, setSeconds] = useState(parseInt(0));
-    const [timerState, setTimerState] = useState(false);
+    const [timerState, setTimerState] = useState(true);
     const [routine, setRoutine] = useState([
         {
             name: '스트레칭',
@@ -193,21 +193,22 @@ const RoutinePage = ({ mm, ss }) => {
         }
     }, [minutes, seconds]);
 
-    const [RoutineStack, setRoutineStack] = useState(0);
+    const [RoutineStack, setRoutineStack] = useState(-1);
     const [isAnimate, setIsAnimate] = useState(false);
 
     const AnimatedPage = (index, name) => {
         if (index !== RoutineStack) {
-            return <RoutineBox animate={{ x: isAnimate ? (RoutineStack * -300) : 0 }}>{name}</RoutineBox>;
+            return <RoutineBox animate={{ x: isAnimate ? RoutineStack * -300 : 0 }}>{name}</RoutineBox>;
         }
         if (index === RoutineStack) {
-            return <RoutineBox animate={{ x: isAnimate ? (RoutineStack * -300) : 0, scale: isAnimate ? 1.2 : 1 }}>{name}</RoutineBox>;
+            return <RoutineBox animate={{ x: isAnimate ? RoutineStack * -300 : 0, scale: isAnimate ? 1.2 : 1 }}>{name}</RoutineBox>;
         }
     };
 
     const RoutineList = routine.map((routine, index) => AnimatedPage(index, routine.name));
 
     const Effeted = () => {
+        // setRoutine(routine.filter((testroutine, index) => index != RoutineStack ? testroutine : null))
         setIsAnimate(true);
         setRoutineStack(RoutineStack + 1);
 
