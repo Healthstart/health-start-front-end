@@ -37,6 +37,8 @@ export const Dashboard = styled.div`
     height: 90%;
     margin: 0 auto;
 
+    z-index: 0;
+
     background-color: #f6f7f9;
     border-radius: 35px;
 `;
@@ -48,7 +50,7 @@ export const Page = styled.div`
     left: 350px;
     top: 0;
 
-    width: 1330px;
-    height: 820px;
+    width: 1340px;
+    height: 860px;
 `;
    
