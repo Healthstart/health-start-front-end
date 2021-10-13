@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Login from '../Compnents/Login';
-import banner from '../Image/banner2.jpg';
-import { Blank } from '../Atomic/Blank';
 import Register from '../Compnents/Register';
+import Preview from '../Compnents/Preview';
+import Api from '../Api';
 
 const Container = styled.div`
     display: flex;
@@ -14,9 +14,6 @@ const Container = styled.div`
     box-shadow: 15px 15px 35px #807c7c, -15px -15px 35px #ffffff;
 `;
 
-const BackgroundImage = styled.img`
-    object-fit: cover;
-    z-index: -1;
 const FlexBox = styled.div`
     display: flex;
     flex-direction: column;
@@ -28,10 +25,28 @@ const FlexBox = styled.div`
 
 const LoginPage = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [routins, setRoutins] = useState([]);
+    const [sortingRoutins, setSortingRoutins] = useState([]);
+
+    const fetchRoutin = useCallback(async () => {
+        const data = await Api.get('/lutin/alluser');
+        const sortingData = await Api.get('/lutin/alluser/order');
+        setRoutins((prevState) => data.data.data.slice(0, 8));
+        setSortingRoutins((prevState) => sortingData.data.data.slice(0, 8));
+    }, []);
+
+    useEffect(() => {
+        fetchRoutin();
+    }, [fetchRoutin]);
 
     return (
         <Container>
             <Login setIsOpen={setIsOpen} />
+
+            <FlexBox>
+                <Preview routins={sortingRoutins} title="인기 루틴" />
+                <Preview routins={routins} title="최신 루틴" />
+            </FlexBox>
 
             <Register isOpen={isOpen} setIsOpen={setIsOpen} />
         </Container>
