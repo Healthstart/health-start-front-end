@@ -53,6 +53,8 @@ const TimerSection = styled.div`
     margin-top: 10px;
 
     display: flex;
+
+    border-right: 3px solid #eee;
 `;
 
 const TimerBox = styled.div`
@@ -97,6 +99,8 @@ const TimerButton = styled.button`
     }
     &:active {
         transform: scale(1.03);
+        background-color: coral;
+        border: none;
     }
 `;
 
