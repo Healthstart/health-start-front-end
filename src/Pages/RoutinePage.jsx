@@ -5,6 +5,13 @@ import RoutinTImerIcon from '../Image/RoutinTimerIcon.png';
 import { motion } from 'framer-motion';
 // import Api from "../Api";
 
+const DashbaordPage = styled(Page)`
+    position: relative;
+    z-index: 10;
+
+    overflow: hidden;
+`;
+
 const TitleTopWrap = styled.div`
     width: 100%;
     height: 100px;
@@ -33,12 +40,13 @@ const ContentWrap = styled.div`
     width: 100%;
     height: 600px;
 
+    /* margin-left: 50px; */
     margin-top: 40px;
     display: flex;
 `;
 
 const TimerSection = styled.div`
-    width: 25%;
+    width: 29%;
     height: 95%;
 
     margin: 0 auto;
@@ -93,12 +101,12 @@ const TimerButton = styled.button`
 `;
 
 const RoutineSection = styled.div`
-    width: 75%;
+    width: 71%;
     height: 95%;
 
     margin-top: 10px;
 
-    background-color: #cfcfcf;
+    /* background-color: #cfcfcf; */
     border-radius: 10px;
 
     display: flex;
@@ -113,18 +121,19 @@ const RoutineCenter = styled.div`
     display: flex;
     justify-content: space-around;
 
-    background-color: white;
+    /* background-color: white; */
 
-    padding-left: 20px;
+    padding-left: 110px;
 `;
 
 const RoutineBox = styled(motion.div)`
     width: 280px;
     height: 350px;
 
-    margin-right: 50px;
+    margin-right: 200px;
     align-self: center;
 
+    border-radius: 30px;
     background-color: #eee;
 `;
 
@@ -136,9 +145,23 @@ const TimerIcon = styled.img`
     margin: 0 auto;
 `;
 
+const RoutineEndAlert = styled(motion.div)`
+    position: absolute;
+    z-index: 20;
+
+    width: 1330px;
+    height: 830px;
+
+    background-color: #ebebeb;
+    border-radius: 30px;
+
+    top: 20px;
+    left: 0;
+`;
+
 const RoutinePage = ({ mm, ss }) => {
-    const [minutes, setMinutes] = useState(parseInt(2));
-    const [seconds, setSeconds] = useState(parseInt(0));
+    const [minutes, setMinutes] = useState(parseInt(0));
+    const [seconds, setSeconds] = useState(parseInt(15));
     const [timerState, setTimerState] = useState(true);
     const [routine, setRoutine] = useState([
         {
@@ -193,24 +216,29 @@ const RoutinePage = ({ mm, ss }) => {
         }
     }, [minutes, seconds]);
 
-    const [RoutineStack, setRoutineStack] = useState(-1);
+    const [RoutineStack, setRoutineStack] = useState(0);
     const [isAnimate, setIsAnimate] = useState(false);
 
     const AnimatedPage = (index, name) => {
+        if (RoutineStack === 0) {
+            if (index === 0) return <RoutineBox animate={{ scale: 1.3 }}>{name}</RoutineBox>;
+            if (index !== 0) return <RoutineBox animate={{ scale: 1 }}>{name}</RoutineBox>;
+        }
         if (index !== RoutineStack) {
-            return <RoutineBox animate={{ x: isAnimate ? RoutineStack * -300 : 0 }}>{name}</RoutineBox>;
+            return <RoutineBox animate={{ x: isAnimate ? RoutineStack * -480 : 0 }}>{name}</RoutineBox>;
         }
         if (index === RoutineStack) {
-            return <RoutineBox animate={{ x: isAnimate ? RoutineStack * -300 : 0, scale: isAnimate ? 1.2 : 1 }}>{name}</RoutineBox>;
+            return <RoutineBox animate={{ x: isAnimate ? RoutineStack * -480 : 0, scale: isAnimate ? 1.3 : 1 }}>{name}</RoutineBox>;
         }
     };
 
     const RoutineList = routine.map((routine, index) => AnimatedPage(index, routine.name));
 
     const Effeted = () => {
-        // setRoutine(routine.filter((testroutine, index) => index != RoutineStack ? testroutine : null))
         setIsAnimate(true);
         setRoutineStack(RoutineStack + 1);
+        setMinutes(0);
+        setSeconds(15);
 
         console.log(routine);
         console.log(RoutineStack);
@@ -218,11 +246,23 @@ const RoutinePage = ({ mm, ss }) => {
     };
 
     return (
-        <Page>
+        <DashbaordPage>
             <TitleTopWrap>
                 <TitleTop>루틴 이름 CUTSTOM</TitleTop>
             </TitleTopWrap>
-
+            {routine.length <= RoutineStack && (
+                <RoutineEndAlert
+                    initial={{ y: -1200 }}
+                    animate={{ y: 0 }}
+                    transition={{
+                        type: 'spring',
+                        stiffness: 360,
+                        damping: 30,
+                    }}
+                >
+                    축하합니다! 모든 루틴을 완료하셨습니다!
+                </RoutineEndAlert>
+            )}
             <ContentWrap>
                 <TimerSection>
                     <TimerBox>
@@ -240,7 +280,7 @@ const RoutinePage = ({ mm, ss }) => {
                     </RoutineCenter>
                 </RoutineSection>
             </ContentWrap>
-        </Page>
+        </DashbaordPage>
     );
 };
 
