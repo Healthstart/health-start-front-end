@@ -19,6 +19,7 @@ const Container = styled.div`
 
     border-radius: 15px;
     box-shadow: 2px 2px 5px #babecc, -5px -5px 10px #ffffff;
+    user-select: none;
 `;
 
 const Content = styled.div`
@@ -84,9 +85,14 @@ const SlideItemContainer = styled.div`
 const InfoText = styled.span`
     position: absolute;
     font-size: 0.9rem;
-    bottom: 1rem;
-    right: 1.5rem;
+    top: ${(props) => props.top}rem;
+    left: ${(props) => props.left}rem;
+    bottom: ${(props) => props.bottom}rem;
+    right: ${(props) => props.right}rem;
+
+    transition: transform 0.3s ease-in-out;
     opacity: ${(props) => (props.active ? 0.8 : 0.6)};
+    transform: ${(props) => (props.active ? 'scale(1.05)' : 'scale(1)')};
 
     &:hover {
         opacity: 0.8;
@@ -95,7 +101,6 @@ const InfoText = styled.span`
 
 const MoreItem = styled.span`
     cursor: pointer;
-    transition: all 0.2s;
 
     &:hover {
         font-weight: bold;
@@ -187,7 +192,12 @@ const Preview = ({ routins, title }) => {
                     ...
                 </MoreItem>
             </List>
-            <InfoText active={isActive}>더 많은 정보를 얻고 싶다면 로그인하세요!</InfoText>
+            <InfoText active={isActive} bottom={1} left={1.5}>
+                더 많은 정보를 얻고 싶다면 로그인하세요!
+            </InfoText>
+            <InfoText bottom={1} right={1.5}>
+                불러온 상위 {title}: {routins.length}개
+            </InfoText>
 
             <RoutinInfoModal isOpen={isOpen} reqClose={closeModal} data={propState} />
         </Container>
