@@ -118,8 +118,8 @@ const Preview = ({ routins, title }) => {
         setPropState((prevState) => null);
     };
 
-    const onClick = (id, lutin_name, lutin_index) => {
-        fetchData(id, lutin_name, lutin_index);
+    const onClick = async (id, lutin_name, lutin_index) => {
+        await fetchData(id, lutin_name, lutin_index);
         setIsOpen((prevState) => true);
     };
 
