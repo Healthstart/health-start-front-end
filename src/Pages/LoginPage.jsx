@@ -1,46 +1,52 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Login from '../Compnents/Login';
-import banner from '../Image/banner2.jpg';
-import { Blank } from '../Atomic/Blank';
 import Register from '../Compnents/Register';
+import Preview from '../Compnents/Preview';
+import Api from '../Api';
 
 const Container = styled.div`
     display: flex;
     position: relative;
     align-items: center;
-    width: 1920px;
+    width: 100vw;
     height: 100vh;
     box-shadow: 15px 15px 35px #807c7c, -15px -15px 35px #ffffff;
 `;
 
-const BackgroundImage = styled.img`
-    object-fit: cover;
-    z-index: -1;
+const FlexBox = styled.div`
     display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 65vw;
     height: 100%;
-    opacity: 0.95;
-`;
-
-const LoadingText = styled.p`
-    z-index: -2;
+    padding: 5rem;
 `;
 
 const LoginPage = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [routins, setRoutins] = useState([]);
+    const [sortingRoutins, setSortingRoutins] = useState([]);
+
+    const fetchRoutin = useCallback(async () => {
+        const data = await Api.get('/lutin/alluser');
+        const sortingData = await Api.get('/lutin/alluser/order');
+        setRoutins((prevState) => data.data.data.slice(0, 8));
+        setSortingRoutins((prevState) => sortingData.data.data.slice(0, 8));
+    }, []);
+
+    useEffect(() => {
+        fetchRoutin();
+    }, [fetchRoutin]);
 
     return (
         <Container>
-            <BackgroundImage src={banner} />
             <Login setIsOpen={setIsOpen} />
-            <Blank w={30} />
-            <LoadingText>Loading to Image...</LoadingText>
+
+            <FlexBox>
+                <Preview routins={sortingRoutins} title="인기 루틴" />
+                <Preview routins={routins} title="최신 루틴" />
+            </FlexBox>
 
             <Register isOpen={isOpen} setIsOpen={setIsOpen} />
         </Container>
