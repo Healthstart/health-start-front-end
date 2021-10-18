@@ -149,6 +149,23 @@ const TimerIcon = styled.img`
     margin: 0 auto;
 `;
 
+const RoutineStartAlert = styled(motion.div)`
+    position: absolute;
+    z-index: 20;
+
+    width: 1330px;
+    height: 830px;
+
+    background-color: #00000028;
+    border-radius: 30px;
+
+    top: 20px;
+    left: 0;   
+
+    backdrop-filter: blur(5px);
+`;
+
+
 const RoutineEndAlert = styled(motion.div)`
     position: absolute;
     z-index: 20;
@@ -254,6 +271,7 @@ const RoutinePage = ({ mm, ss }) => {
             <TitleTopWrap>
                 <TitleTop>루틴 이름 CUTSTOM</TitleTop>
             </TitleTopWrap>
+            <RoutineStartAlert></RoutineStartAlert>
             {routine.length <= RoutineStack && (
                 <RoutineEndAlert
                     initial={{ y: -1200 }}
