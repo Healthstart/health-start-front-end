@@ -149,7 +149,21 @@ const TimerIcon = styled.img`
     margin: 0 auto;
 `;
 
-const RoutineStartAlert = styled(motion.div)`
+const RoutineSelectBG = styled(motion.div)`
+    position: absolute;
+    z-index: 40;
+
+    width: 1330px;
+    height: 830px;
+
+    background-color: #f1f1f1;
+    border-radius: 30px;
+
+    top: 20px;
+    left: 0;   
+`;
+
+const RoutineStartAlertBG = styled(motion.div)`
     position: absolute;
     z-index: 20;
 
@@ -165,6 +179,21 @@ const RoutineStartAlert = styled(motion.div)`
     backdrop-filter: blur(5px);
 `;
 
+const RoutineStartAlert = styled(motion.div)`
+    position: absolute;
+    z-index: 30;
+
+    width: 600px;
+    height: 400px;
+
+    background-color: #fff;
+    border-radius: 20px;
+    
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+`;
 
 const RoutineEndAlert = styled(motion.div)`
     position: absolute;
@@ -239,6 +268,7 @@ const RoutinePage = ({ mm, ss }) => {
 
     const [RoutineStack, setRoutineStack] = useState(0);
     const [isAnimate, setIsAnimate] = useState(false);
+    const [isRoutineSelect, setisRoutineSelect] = useState(false);
 
     const AnimatedPage = (index, name) => {
         if (RoutineStack === 0) {
@@ -271,7 +301,27 @@ const RoutinePage = ({ mm, ss }) => {
             <TitleTopWrap>
                 <TitleTop>루틴 이름 CUTSTOM</TitleTop>
             </TitleTopWrap>
-            <RoutineStartAlert></RoutineStartAlert>
+            <RoutineSelectBG
+                animate={{ y: isRoutineSelect ? -900 : 0}}
+            >
+                <TimerButton onClick={() => setisRoutineSelect(true)}>완료</TimerButton>
+            </RoutineSelectBG>
+            <RoutineStartAlertBG
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+            >
+                <RoutineStartAlert
+                initial={{ y: -1200, x: -300 }}
+                animate={{ y: isRoutineSelect ? -180 : 0, x: -300 }}
+                transition={{
+                    type: 'spring',
+                    stiffness: 360,
+                    damping: 30,
+                }}
+                >
+
+                </RoutineStartAlert>
+            </RoutineStartAlertBG>
             {routine.length <= RoutineStack && (
                 <RoutineEndAlert
                     initial={{ y: -1200 }}
