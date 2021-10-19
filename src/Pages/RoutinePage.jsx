@@ -153,28 +153,28 @@ const RoutineSelectBG = styled(motion.div)`
     position: absolute;
     z-index: 40;
 
-    width: 1330px;
+    width: 69vw;
     height: 830px;
 
     background-color: #f1f1f1;
     border-radius: 30px;
 
     top: 20px;
-    left: 0;   
+    left: 0;
 `;
 
 const RoutineStartAlertBG = styled(motion.div)`
     position: absolute;
     z-index: 20;
 
-    width: 1330px;
+    width: 69vw;
     height: 830px;
 
     background-color: #00000028;
     border-radius: 30px;
 
     top: 20px;
-    left: 0;   
+    left: 0;
 
     backdrop-filter: blur(5px);
 `;
@@ -188,18 +188,17 @@ const RoutineStartAlert = styled(motion.div)`
 
     background-color: #fff;
     border-radius: 20px;
-    
+
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
 `;
 
 const RoutineEndAlert = styled(motion.div)`
     position: absolute;
     z-index: 20;
 
-    width: 1330px;
+    width: 69vw;
     height: 830px;
 
     background-color: #ebebeb;
@@ -246,7 +245,7 @@ const RoutinePage = ({ mm, ss }) => {
 
     useEffect(() => {
         console.log('마ㅏ');
-        if (timerState == false) {
+        if (timerState === false) {
             console.log('타이머 안 움직임');
         } else {
             const CountDown = setInterval(() => {
@@ -264,7 +263,7 @@ const RoutinePage = ({ mm, ss }) => {
             }, 1000);
             return () => clearInterval(CountDown);
         }
-    }, [minutes, seconds]);
+    }, [minutes, seconds, timerState]);
 
     const [RoutineStack, setRoutineStack] = useState(0);
     const [isAnimate, setIsAnimate] = useState(false);
@@ -301,27 +300,24 @@ const RoutinePage = ({ mm, ss }) => {
             <TitleTopWrap>
                 <TitleTop>루틴 이름 CUTSTOM</TitleTop>
             </TitleTopWrap>
-            <RoutineSelectBG
-                animate={{ y: isRoutineSelect ? -900 : 0}}
-            >
+
+            <RoutineSelectBG animate={{ y: isRoutineSelect ? -900 : 0 }}>
+                <div></div>
                 <TimerButton onClick={() => setisRoutineSelect(true)}>완료</TimerButton>
             </RoutineSelectBG>
-            <RoutineStartAlertBG
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-            >
-                <RoutineStartAlert
-                initial={{ y: -1200, x: -300 }}
-                animate={{ y: isRoutineSelect ? -180 : 0, x: -300 }}
-                transition={{
-                    type: 'spring',
-                    stiffness: 360,
-                    damping: 30,
-                }}
-                >
 
-                </RoutineStartAlert>
+            <RoutineStartAlertBG initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                <RoutineStartAlert
+                    initial={{ y: -1200, x: -300 }}
+                    animate={{ y: isRoutineSelect ? -180 : 0, x: -300 }}
+                    transition={{
+                        type: 'spring',
+                        stiffness: 360,
+                        damping: 30,
+                    }}
+                ></RoutineStartAlert>
             </RoutineStartAlertBG>
+
             {routine.length <= RoutineStack && (
                 <RoutineEndAlert
                     initial={{ y: -1200 }}
