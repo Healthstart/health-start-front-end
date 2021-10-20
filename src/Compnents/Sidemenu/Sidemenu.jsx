@@ -131,7 +131,7 @@ const Menulink = styled(Link)`
     width: 90%;
     height: 85px;
 
-    background-color: ${(props) => (props.isActive ? '#f0efef' : '#fff')};
+    background-color: ${(props) => (props.clicked ? '#f0efef' : '#fff')};
     border: 1px solid rgba(0, 0, 0, 0);
     border-radius: 7px;
 
@@ -194,45 +194,41 @@ const Sidemenu = ({ match }) => {
                 </Profile>
                 <MenuList>
                     <Menulink
-                        Link
                         to={`${match.path}/`}
                         onClick={() => {
                             ChangeMenuState(1);
                         }}
-                        isActive={isActive[0]}
+                        clicked={isActive[0]}
                     >
                         <Settings color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 10 }} />
                         <MenuItemText>프로파일</MenuItemText>
                     </Menulink>
                     <Menulink
-                        Link
                         to={`${match.path}/exercise`}
                         onClick={() => {
                             ChangeMenuState(2);
                         }}
-                        isActive={isActive[1]}
+                        clicked={isActive[1]}
                     >
                         <Clock color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 10 }} />
                         <MenuItemText>루틴실행</MenuItemText>
                     </Menulink>
                     <Menulink
-                        Link
                         to={`${match.path}/temp`}
                         onClick={() => {
                             ChangeMenuState(3);
                         }}
-                        isActive={isActive[2]}
+                        clicked={isActive[2]}
                     >
                         <Users color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 13 }} />
                         <MenuItemText>커뮤니티</MenuItemText>
                     </Menulink>
                     <Menulink
-                        Link
                         to={`${match.path}/temp`}
                         onClick={() => {
                             ChangeMenuState(4);
                         }}
-                        isActive={isActive[3]}
+                        clicked={isActive[3]}
                     >
                         <PlusCircle color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 10 }} />
                         <MenuItemText>식단추가</MenuItemText>
