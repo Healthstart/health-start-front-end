@@ -10,14 +10,10 @@ import { Settings } from 'react-feather';
 import Api from '../../Api';
 
 const Navbar = styled.div`
-    position: absolute;
-
-    width: 340px;
+    position: relative;
+    width: 20%;
     height: 100%;
     background-color: #fff;
-
-    transform: translateY(-50%);
-    top: 50%;
 
     border-radius: 20px;
     -webkit-box-shadow: 21px 0px 42px -8px rgba(0, 0, 0, 0.05);
@@ -27,7 +23,6 @@ const Navbar = styled.div`
 const Wrap = styled.div`
     width: 100%;
     height: 100%;
-    position: relative;
 `;
 
 const Profile = styled.div`
