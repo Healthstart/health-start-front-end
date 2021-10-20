@@ -8,7 +8,6 @@ export const ProfileProvider = ({ children }) => {
 
     const fetchData = useCallback(async () => {
         const data = await Api.get('/profile');
-        console.log(data.data.data);
         if (!data) return;
 
         setProfile((prevState) => data);

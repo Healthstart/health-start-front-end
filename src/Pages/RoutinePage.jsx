@@ -162,10 +162,7 @@ const RoutinePage = ({ mm, ss }) => {
     const routine = selectedRoutinState[0].content;
 
     useEffect(() => {
-        console.log('마ㅏ');
-        if (onTimer === false) {
-            console.log('타이머 안 움직임');
-        } else {
+        if (onTimer) {
             const CountDown = setInterval(() => {
                 if (seconds > 0) {
                     setSeconds(parseInt(seconds) - 1);
