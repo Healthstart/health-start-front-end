@@ -16,18 +16,12 @@ const Container = styled.form`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 35%;
+    width: 35vw;
+    min-width: 500px;
     height: 100%;
 
+    box-shadow: 2px 2px 5px #babecc, -5px -5px 10px #ffffff;
     border-radius: 0 15px 15px 0;
-    box-shadow: 3px 3px 15px black;
-
-    @media screen and (max-width: 680px) {
-        width: 28%;
-    }
-    @media screen and (max-width: 600px) {
-        width: 500px;
-    }
 `;
 
 const LinkRegister = styled.p`
@@ -71,6 +65,7 @@ const Login = ({ setIsOpen }) => {
             history.push({
                 pathname: '/content',
             });
+            window.location.reload();
         } catch (err) {
             toast.error(err.response.data.error);
             setLoginState((prevState) => ({ ...prevState, password: '' }));
