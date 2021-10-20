@@ -225,11 +225,9 @@ const RoutinePage = ({ mm, ss }) => {
                         <TimerButton onClick={() => Effeted()}>완료</TimerButton>
                     </TimerBox>
                 </TimerSection>
+
                 <RoutineSection>
-                    <RoutineCenter>
-                        {RoutineList}
-                        <RoutineBox></RoutineBox>
-                    </RoutineCenter>
+                    <RoutineCenter>{RoutineList}</RoutineCenter>
                 </RoutineSection>
             </ContentWrap>
         </Page>
