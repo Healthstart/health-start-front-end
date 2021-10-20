@@ -125,9 +125,15 @@ const RoutineCenter = styled.div`
 `;
 
 const RoutineBox = styled(motion.div)`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     width: 280px;
     height: 350px;
 
+    padding: 2rem;
     margin-right: 200px;
     align-self: center;
 
@@ -147,9 +153,9 @@ const RoutinePage = ({ mm, ss }) => {
     const [RoutineStack, setRoutineStack] = useState(0);
     const [isAnimate, setIsAnimate] = useState(false);
 
-    const [minutes, setMinutes] = useState(parseInt(0));
-    const [seconds, setSeconds] = useState(parseInt(15));
-    const timerState = useState(true)[0];
+    const [minutes, setMinutes] = useState(parseInt(1));
+    const [seconds, setSeconds] = useState(parseInt(0));
+    const [onTimer, setOnTimer] = useState(false);
 
     const isSelectState = useState(false);
     const selectedRoutinState = useState({ id: -1, content: [] });
@@ -157,7 +163,7 @@ const RoutinePage = ({ mm, ss }) => {
 
     useEffect(() => {
         console.log('마ㅏ');
-        if (timerState === false) {
+        if (onTimer === false) {
             console.log('타이머 안 움직임');
         } else {
             const CountDown = setInterval(() => {
@@ -175,27 +181,57 @@ const RoutinePage = ({ mm, ss }) => {
             }, 1000);
             return () => clearInterval(CountDown);
         }
-    }, [minutes, seconds, timerState]);
+    }, [minutes, seconds, onTimer]);
 
-    const AnimatedPage = (index, name) => {
+    const AnimatedPage = (index, data) => {
         if (RoutineStack === 0) {
-            if (index === 0) return <RoutineBox animate={{ scale: 1.3 }}>{name}</RoutineBox>;
-            if (index !== 0) return <RoutineBox animate={{ scale: 1 }}>{name}</RoutineBox>;
+            if (index === 0)
+                return (
+                    <RoutineBox animate={{ scale: 1.3 }}>
+                        <h3>{data.name}</h3>
+                        <p>
+                            {data.set}세트 / {data.count}회
+                        </p>
+                    </RoutineBox>
+                );
+            if (index !== 0)
+                return (
+                    <RoutineBox animate={{ scale: 1 }}>
+                        <h3>{data.name}</h3>
+                        <p>
+                            {data.set}세트 / {data.count}회
+                        </p>
+                    </RoutineBox>
+                );
         }
         if (index !== RoutineStack) {
-            return <RoutineBox animate={{ x: isAnimate ? RoutineStack * -480 : 0 }}>{name}</RoutineBox>;
+            return (
+                <RoutineBox animate={{ x: isAnimate ? RoutineStack * -480 : 0 }}>
+                    <h3>{data.name}</h3>
+                    <p>
+                        {data.set}세트 / {data.count}회
+                    </p>
+                </RoutineBox>
+            );
         }
         if (index === RoutineStack) {
-            return <RoutineBox animate={{ x: isAnimate ? RoutineStack * -480 : 0, scale: isAnimate ? 1.3 : 1 }}>{name}</RoutineBox>;
+            return (
+                <RoutineBox animate={{ x: isAnimate ? RoutineStack * -480 : 0, scale: isAnimate ? 1.3 : 1 }}>
+                    <h3>{data.name}</h3>
+                    <p>
+                        {data.set}세트 / {data.count}회
+                    </p>
+                </RoutineBox>
+            );
         }
     };
 
-    const RoutineList = routine.map((routine, index) => AnimatedPage(index, routine.name));
+    const RoutineList = routine.map((routine, index) => AnimatedPage(index, routine));
 
     const Effeted = () => {
         setIsAnimate(true);
         setRoutineStack(RoutineStack + 1);
-        setMinutes(0);
+        setMinutes(1);
         setSeconds(15);
 
         console.log(routine);
@@ -211,7 +247,7 @@ const RoutinePage = ({ mm, ss }) => {
 
             <SelectedRoutin isSelectState={isSelectState} selectedRoutinState={selectedRoutinState} />
 
-            <StartAlert isSelectState={isSelectState} selectedRoutinState={selectedRoutinState} />
+            <StartAlert isSelectState={isSelectState} selectedRoutinState={selectedRoutinState} timerState={[onTimer, setOnTimer]} />
 
             {routine.length <= RoutineStack && <EndAlert />}
 

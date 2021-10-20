@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 import { RoutinButton } from '../../Atomic/Buttons';
@@ -42,9 +42,9 @@ const StartAlertContent = styled(Content)`
     text-align: center;
 `;
 
-export const StartAlert = ({ isSelectState, selectedRoutinState }) => {
+export const StartAlert = ({ isSelectState, selectedRoutinState, timerState }) => {
     const [isSelect, setIsSelect] = isSelectState;
-    const [isRealSelect, setIsRealSelect] = useState(false);
+    const [isRealSelect, setIsRealSelect] = timerState;
     const selectedRoutin = selectedRoutinState[0];
 
     return (
