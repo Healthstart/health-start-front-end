@@ -3,14 +3,8 @@ import styled from 'styled-components';
 import { Page } from '../Atomic/Background';
 import RoutinTImerIcon from '../Image/RoutinTimerIcon.png';
 import { motion } from 'framer-motion';
-// import Api from "../Api";
-
-const DashbaordPage = styled(Page)`
-    position: relative;
-    z-index: 10;
-
-    overflow: hidden;
-`;
+import SelectedRoutin from '../Compnents/Routins/SelectedRoutin';
+import { StartAlert, EndAlert } from '../Compnents/Routins/Alert';
 
 const TitleTopWrap = styled.div`
     width: 100%;
@@ -149,99 +143,17 @@ const TimerIcon = styled.img`
     margin: 0 auto;
 `;
 
-const RoutineSelectBG = styled(motion.div)`
-    position: absolute;
-    z-index: 40;
-
-    width: 69vw;
-    height: 830px;
-
-    background-color: #f1f1f1;
-    border-radius: 30px;
-
-    top: 20px;
-    left: 0;
-`;
-
-const RoutineStartAlertBG = styled(motion.div)`
-    position: absolute;
-    z-index: 20;
-
-    width: 69vw;
-    height: 830px;
-
-    background-color: #00000028;
-    border-radius: 30px;
-
-    top: 20px;
-    left: 0;
-
-    backdrop-filter: blur(5px);
-`;
-
-const RoutineStartAlert = styled(motion.div)`
-    position: absolute;
-    z-index: 30;
-
-    width: 600px;
-    height: 400px;
-
-    background-color: #fff;
-    border-radius: 20px;
-
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-`;
-
-const RoutineEndAlert = styled(motion.div)`
-    position: absolute;
-    z-index: 20;
-
-    width: 69vw;
-    height: 830px;
-
-    background-color: #ebebeb;
-    border-radius: 30px;
-
-    top: 20px;
-    left: 0;
-`;
-
 const RoutinePage = ({ mm, ss }) => {
+    const [RoutineStack, setRoutineStack] = useState(0);
+    const [isAnimate, setIsAnimate] = useState(false);
+
     const [minutes, setMinutes] = useState(parseInt(0));
     const [seconds, setSeconds] = useState(parseInt(15));
-    const [timerState, setTimerState] = useState(true);
-    const [routine, setRoutine] = useState([
-        {
-            name: '스트레칭',
-            count: 10,
-        },
-        {
-            name: '스쿼트',
-            count: 20,
-        },
-        {
-            name: '오호호',
-            count: 11,
-        },
-        {
-            name: '무야호',
-            count: 12,
-        },
-        {
-            name: '응애',
-            count: 13,
-        },
-        {
-            name: '잏히',
-            count: 14,
-        },
-        {
-            name: '오렌지쥬스',
-            count: 15,
-        },
-    ]);
+    const timerState = useState(true)[0];
+
+    const isSelectState = useState(false);
+    const selectedRoutinState = useState({ id: -1, content: [] });
+    const routine = selectedRoutinState[0].content;
 
     useEffect(() => {
         console.log('마ㅏ');
@@ -264,10 +176,6 @@ const RoutinePage = ({ mm, ss }) => {
             return () => clearInterval(CountDown);
         }
     }, [minutes, seconds, timerState]);
-
-    const [RoutineStack, setRoutineStack] = useState(0);
-    const [isAnimate, setIsAnimate] = useState(false);
-    const [isRoutineSelect, setisRoutineSelect] = useState(false);
 
     const AnimatedPage = (index, name) => {
         if (RoutineStack === 0) {
@@ -296,41 +204,17 @@ const RoutinePage = ({ mm, ss }) => {
     };
 
     return (
-        <DashbaordPage>
+        <Page>
             <TitleTopWrap>
                 <TitleTop>루틴 이름 CUTSTOM</TitleTop>
             </TitleTopWrap>
 
-            <RoutineSelectBG animate={{ y: isRoutineSelect ? -900 : 0 }}>
-                <div></div>
-                <TimerButton onClick={() => setisRoutineSelect(true)}>완료</TimerButton>
-            </RoutineSelectBG>
+            <SelectedRoutin isSelectState={isSelectState} selectedRoutinState={selectedRoutinState} />
 
-            <RoutineStartAlertBG initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                <RoutineStartAlert
-                    initial={{ y: -1200, x: -300 }}
-                    animate={{ y: isRoutineSelect ? -180 : 0, x: -300 }}
-                    transition={{
-                        type: 'spring',
-                        stiffness: 360,
-                        damping: 30,
-                    }}
-                ></RoutineStartAlert>
-            </RoutineStartAlertBG>
+            <StartAlert isSelectState={isSelectState} selectedRoutinState={selectedRoutinState} />
 
-            {routine.length <= RoutineStack && (
-                <RoutineEndAlert
-                    initial={{ y: -1200 }}
-                    animate={{ y: 0 }}
-                    transition={{
-                        type: 'spring',
-                        stiffness: 360,
-                        damping: 30,
-                    }}
-                >
-                    축하합니다! 모든 루틴을 완료하셨습니다!
-                </RoutineEndAlert>
-            )}
+            {routine.length <= RoutineStack && <EndAlert />}
+
             <ContentWrap>
                 <TimerSection>
                     <TimerBox>
@@ -348,7 +232,7 @@ const RoutinePage = ({ mm, ss }) => {
                     </RoutineCenter>
                 </RoutineSection>
             </ContentWrap>
-        </DashbaordPage>
+        </Page>
     );
 };
 
