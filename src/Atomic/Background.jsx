@@ -12,7 +12,6 @@ const BGgradient = keyframes`
     }
 `;
 
-
 export const Background = styled.div`
     position: fixed;
 
@@ -22,33 +21,31 @@ export const Background = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-	background-size: 400% 400%;
-	
+    background-size: 400% 400%;
+
     animation: ${BGgradient} 15s ease infinite;
 `;
 
-
 export const Dashboard = styled.div`
     position: relative;
-
-    width: 88%;
-    height: 90%;
+    display: flex;
+    width: 90vw;
+    height: 90vh;
     margin: 0 auto;
+    padding: 1rem;
+
+    z-index: 0;
 
     background-color: #f6f7f9;
     border-radius: 35px;
 `;
 
-
 export const Page = styled.div`
-    position: absolute;
+    position: relative;
+    width: 80%;
+    height: 100%;
 
-    left: 350px;
-    top: 0;
-
-    width: 1330px;
-    height: 820px;
+    padding: 2rem;
 `;
-   
