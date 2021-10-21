@@ -4,14 +4,10 @@ import { Page } from '../Atomic/Background';
 import { Line } from 'react-chartjs-2';
 
 const Card = styled.div`
-    position: absolute;
     cursor: pointer;
 
     width: 600px;
     height: 350px;
-
-    top: 50px;
-    left: 40px;
 
     -webkit-box-shadow: 21px 0px 42px -8px rgba(0, 0, 0, 0.03);
     box-shadow: 21px 0px 42px -8px rgba(0, 0, 0, 0.05);

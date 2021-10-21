@@ -37,4 +37,35 @@ export const CircleButton = styled(RowButton)`
     border-radius: 50%;
 `;
 
+export const RoutinButton = styled.button`
+    cursor: pointer;
+
+    display: block;
+
+    width: 80px;
+    height: 35px;
+
+    border-radius: 30px;
+    border: 1px solid #2672ff;
+    background-color: none;
+
+    color: #2672ff;
+    font-weight: 700;
+    line-height: 35px;
+
+    margin: 0 auto;
+    margin-top: 10px;
+
+    transition: 0.2s;
+    &:hover {
+        background-color: #2672ff;
+        color: white;
+    }
+    &:active {
+        transform: scale(1.03);
+        background-color: coral;
+        border: none;
+    }
+`;
+
 export default RowButton;
