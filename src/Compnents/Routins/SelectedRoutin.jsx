@@ -25,6 +25,8 @@ const RoutinList = styled.div`
     position: relative;
     width: 50%;
     padding: 1rem;
+    height: 100%;
+    overflow: scroll;
 
     &::after {
         position: absolute;
