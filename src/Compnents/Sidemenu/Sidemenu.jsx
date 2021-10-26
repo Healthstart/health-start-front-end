@@ -214,14 +214,14 @@ const Sidemenu = ({ match }) => {
                         <MenuItemText>루틴실행</MenuItemText>
                     </Menulink>
                     <Menulink
-                        to={`${match.path}/temp`}
+                        to={`${match.path}/RoutineManagement`}
                         onClick={() => {
                             ChangeMenuState(3);
                         }}
                         clicked={isActive[2]}
                     >
                         <Users color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 13 }} />
-                        <MenuItemText>커뮤니티</MenuItemText>
+                        <MenuItemText>루틴관리</MenuItemText>
                     </Menulink>
                     <Menulink
                         to={`${match.path}/temp`}
@@ -231,7 +231,7 @@ const Sidemenu = ({ match }) => {
                         clicked={isActive[3]}
                     >
                         <PlusCircle color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 10 }} />
-                        <MenuItemText>식단추가</MenuItemText>
+                        <MenuItemText>커뮤니티</MenuItemText>
                     </Menulink>
                 </MenuList>
                 <Logout to="/logout">
