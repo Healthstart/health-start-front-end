@@ -220,18 +220,18 @@ const Sidemenu = ({ match }) => {
                         }}
                         clicked={isActive[2]}
                     >
-                        <Users color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 13 }} />
-                        <MenuItemText>커뮤니티</MenuItemText>
+                        <PlusCircle color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 10 }} />
+                        <MenuItemText>가나다라</MenuItemText>
                     </Menulink>
                     <Menulink
-                        to={`${match.path}/temp`}
+                        to={`${match.path}/post`}
                         onClick={() => {
                             ChangeMenuState(4);
                         }}
                         clicked={isActive[3]}
                     >
-                        <PlusCircle color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 10 }} />
-                        <MenuItemText>식단추가</MenuItemText>
+                        <Users color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 13 }} />
+                        <MenuItemText>커뮤니티</MenuItemText>
                     </Menulink>
                 </MenuList>
                 <Logout to="/logout">
