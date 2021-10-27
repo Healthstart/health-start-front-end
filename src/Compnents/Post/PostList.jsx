@@ -19,10 +19,23 @@ const Container = styled.div`
     animation: ${ListAnimate} 1.8s;
 `;
 
+const PostAnimate = keyframes`
+    0% {
+        transform: scale(0.3);
+    }
+    70% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+`;
+
 const Post = styled.div`
     position: relative;
     margin-bottom: 3vh;
     padding: 0 1rem 2rem 0;
+    animation: ${PostAnimate} 650ms ease-in-out;
 
     & h3 {
         margin-bottom: -0.2rem;
