@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { Page } from '../Atomic/Background';
 import PostList from '../Compnents/Post/PostList';
 import MakePost from '../Compnents/Post/MakePost';
 import PostPreview from '../Compnents/Post/PostPreview';
 import useProfile from '../Hooks/useProfile';
+import Api from '../Api';
 
 const Container = styled.div`
     display: grid;
@@ -26,6 +27,13 @@ const PostPage = () => {
     const { email } = useProfile().data.data;
     const initialState = { title: '', content: '', poster: email };
     const inputState = useState(initialState);
+    const [posts, setPosts] = useState([]);
+
+    const fetchData = useCallback(async () => {
+        const res = await Api.get('/post');
+        const { data } = res.data;
+        setPosts((prevState) => (data.length >= 50 ? data.length.slice(0, 50) : data));
+    }, []);
 
     return (
         <Page>
@@ -35,11 +43,11 @@ const PostPage = () => {
                 </Section>
 
                 <Section>
-                    <PostPreview inputState={inputState} initialState={initialState} />
+                    <PostPreview inputState={inputState} initialState={initialState} fetchData={fetchData} />
                 </Section>
 
                 <Section style={{ overflowY: 'scroll', gridRow: '1/3', gridColumn: '2/3' }}>
-                    <PostList />
+                    <PostList email={email} fetchData={fetchData} posts={posts} />
                 </Section>
             </Container>
         </Page>

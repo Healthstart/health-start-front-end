@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Api from '../../Api';
+import { Trash2 } from 'react-feather';
+import toast from 'react-hot-toast';
 
 const ListAnimate = keyframes`
     0% {
@@ -45,14 +47,38 @@ const Post = styled.div`
     }
 `;
 
-const PostList = () => {
-    const [posts, setPosts] = useState([]);
+const DelBtn = styled.button`
+    display: ${(props) => (props.visible ? 'block' : 'none')};
+    position: absolute;
+    top: 0.2rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    opacity: 0.85;
+    cursor: pointer;
+    transition: all 150ms ease-in-out;
+    &:hover {
+        opacity: 1;
+        transform: scale(1.05);
 
-    const fetchData = useCallback(async () => {
-        const res = await Api.get('/post');
-        const { data } = res.data;
-        setPosts((prevState) => (data.length >= 50 ? data.length.slice(0, 50) : data));
-    }, []);
+        & svg {
+            stroke: salmon;
+        }
+    }
+`;
+
+const PostList = ({ email, fetchData, posts }) => {
+    const onClickDel = (id) => {
+        Api.delete(`/post/${id}`).then(
+            (data) => {
+                toast.success(data.data.success);
+                fetchData();
+            },
+            (err) => {
+                toast.error(err.response.data.error);
+            }
+        );
+    };
 
     useEffect(() => {
         fetchData();
@@ -65,6 +91,9 @@ const PostList = () => {
                     <h3>{x.title}</h3>
                     <span>{x.poster}</span>
                     <p>{x.content}</p>
+                    <DelBtn onClick={() => onClickDel(x.id)} visible={x.poster === email}>
+                        <Trash2 size={20} color="gray" />
+                    </DelBtn>
                 </Post>
             ))}
         </Container>
