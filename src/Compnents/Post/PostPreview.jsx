@@ -15,7 +15,7 @@ const Preview = styled.div`
         margin-top: 2rem;
     }
 `;
-const PostPreview = ({ inputState, initialState }) => {
+const PostPreview = ({ inputState, initialState, fetchData }) => {
     const [{ title, poster, content }, setInputs] = inputState;
 
     const onClickSubmit = () => {
@@ -28,6 +28,7 @@ const PostPreview = ({ inputState, initialState }) => {
             (data) => {
                 toast.success('성공적으로 포스트를 작성했습니다!');
                 setInputs((prevState) => initialState);
+                fetchData();
             },
             (err) => {
                 toast.error(err.response.data.error);
