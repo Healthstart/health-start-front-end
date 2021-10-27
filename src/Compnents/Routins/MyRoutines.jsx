@@ -5,6 +5,8 @@ import { Trash2 } from "react-feather";
 
 const MyRoutinesCard = styled(Card)`
     margin-top: 10px;
+
+    position: relative;
 `;
 const TitleText = styled.h3`
     display: inline-block;
@@ -18,6 +20,32 @@ const TitleText = styled.h3`
 
     border: 1.3px solid #e6e6e6;
     border-radius: 20px;
+`;
+
+const AddRoutine = styled.button`
+    z-index: 50;
+    cursor: pointer;
+
+    display: block;
+    position: absolute;
+
+    top: 2rem;
+    right: 40px;
+
+    width: 40px;
+    height: 40px;
+
+    background-color: #fcfcfc;
+    color: #353535;
+
+    border: 1.3px solid #e6e6e6;
+    border-radius: 15px;
+
+    transition: 0.3s;
+    &:hover{
+        transform: scale(1.07);
+        background-color: #e7e7e7;
+    }
 `;
 
 const RoutinesWrap = styled.div`
@@ -49,6 +77,7 @@ const RoutineBlock = styled.div`
     border: 1.3px solid #e6e6e6;
     border-radius: 20px;
 
+    position: relative;
     transition: 0.3s;
     &:hover{
         background-color: #f3f2f2;
@@ -76,10 +105,17 @@ const RoutineDetail = styled.div`
 
 const Remove = styled(Trash2)`
     position: absolute;
-    right: 0;
     
-    opacity: 0.6;
+    top: 1.8rem;
+    right: 1.5rem;
+    
+    stroke: #747474;
 
+    transition: 0.3s;
+    &:hover{
+        transform: scale(1.07);
+        stroke: #c93636; 
+    }
     
 `;
 
@@ -87,6 +123,7 @@ export const MyRoutines = () => {
     return (
         <MyRoutinesCard>
             <TitleText>내 루틴</TitleText>
+            <AddRoutine>+</AddRoutine>
             <RoutinesWrap>
                 <RoutineBlock>
                     <RoutineName>우하하하</RoutineName>
