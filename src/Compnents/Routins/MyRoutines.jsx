@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { Card } from '../../Atomic/Background';
 import { Trash2 } from "react-feather";
 
+import useRoutine from '../../Hooks/useRoutine';
+
 const MyRoutinesCard = styled(Card)`
     margin-top: 10px;
 
@@ -120,16 +122,24 @@ const Remove = styled(Trash2)`
 `;
 
 export const MyRoutines = () => {
+
+    const Routines = useRoutine();
+    const testClick = () => {
+        console.log(Routines);
+    }
+
     return (
         <MyRoutinesCard>
             <TitleText>내 루틴</TitleText>
-            <AddRoutine>+</AddRoutine>
+            <AddRoutine onClick={testClick}>+</AddRoutine>
             <RoutinesWrap>
+                {Routines ? Routines.map((x) => 
                 <RoutineBlock>
                     <RoutineName>우하하하</RoutineName>
                     <RoutineDetail>tset</RoutineDetail>
                     <Remove />
-                </RoutineBlock>
+                </RoutineBlock>)}
+                
             </RoutinesWrap>
         </MyRoutinesCard>
     );
