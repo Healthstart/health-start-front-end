@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Card } from '../../Atomic/Background';
-import { Trash2 } from "react-feather";
+import { Trash2 } from 'react-feather';
 
 import useRoutine from '../../Hooks/useRoutine';
+// import Api from '../../Api';
 
 const MyRoutinesCard = styled(Card)`
     margin-top: 10px;
@@ -44,7 +45,7 @@ const AddRoutine = styled.button`
     border-radius: 15px;
 
     transition: 0.3s;
-    &:hover{
+    &:hover {
         transform: scale(1.07);
         background-color: #e7e7e7;
     }
@@ -60,8 +61,8 @@ const RoutinesWrap = styled.div`
 
     overflow: hidden;
     overflow-y: scroll;
-    
-    ::-webkit-scrollbar{
+
+    ::-webkit-scrollbar {
         display: none;
     }
 `;
@@ -74,14 +75,14 @@ const RoutineBlock = styled.div`
     height: 80px;
 
     margin-top: 20px;
-    
+
     background-color: #fcfcfc;
     border: 1.3px solid #e6e6e6;
     border-radius: 20px;
 
     position: relative;
     transition: 0.3s;
-    &:hover{
+    &:hover {
         background-color: #f3f2f2;
         transform: translateY(-5px);
     }
@@ -107,40 +108,39 @@ const RoutineDetail = styled.div`
 
 const Remove = styled(Trash2)`
     position: absolute;
-    
+
     top: 1.8rem;
     right: 1.5rem;
-    
+
     stroke: #747474;
 
     transition: 0.3s;
-    &:hover{
+    &:hover {
         transform: scale(1.07);
-        stroke: #c93636; 
+        stroke: #c93636;
     }
-    
 `;
 
 export const MyRoutines = () => {
+    const Routine = useRoutine();
+    
+    const addRoutine = () => {
+        console.log(Routine);
+    };
 
-    const Routines = useRoutine();
-    const testClick = () => {
-        console.log(Routines);
-    }
+    const RoutineList = Routine.map((data) => (
+        <RoutineBlock>
+            <RoutineName>{data.lutin_name}</RoutineName>
+            <RoutineDetail>클릭하여 자세히보기</RoutineDetail>
+            <Remove />
+        </RoutineBlock>
+    ));
 
     return (
         <MyRoutinesCard>
             <TitleText>내 루틴</TitleText>
-            <AddRoutine onClick={testClick}>+</AddRoutine>
-            <RoutinesWrap>
-                {Routines ? Routines.map((x) => 
-                <RoutineBlock>
-                    <RoutineName>우하하하</RoutineName>
-                    <RoutineDetail>tset</RoutineDetail>
-                    <Remove />
-                </RoutineBlock>)}
-                
-            </RoutinesWrap>
+            <AddRoutine onClick={addRoutine}>+</AddRoutine>
+            <RoutinesWrap>{RoutineList}</RoutinesWrap>
         </MyRoutinesCard>
     );
 };
