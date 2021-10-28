@@ -14,7 +14,7 @@ export const RoutineProvider = ({ children }) => {
     }, []);
 
     useEffect(() => {
-        fetchData();
+        fetchData().then(() => {});
     }, [fetchData]);
 
     return <Context.Provider value={routine}>{children}</Context.Provider>;
