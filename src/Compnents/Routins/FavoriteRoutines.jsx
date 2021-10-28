@@ -129,9 +129,9 @@ export const FavoriteRoutines = () => {
     
     const datas = ItemList.map((x) => (
         <RoutineBlock>
-        <RoutineName>{x.RoutineName}</RoutineName>
-        <RoutineDetail>작성자 : {x.Author}</RoutineDetail>
-        <Remove />
+            <RoutineName>{x.RoutineName}</RoutineName>
+            <RoutineDetail>작성자 : {x.Author}</RoutineDetail>
+            <Remove />
         </RoutineBlock>
     ));
 
