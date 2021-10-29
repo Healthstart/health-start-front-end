@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { RoutinButton } from '../../Atomic/Buttons';
 import toast from 'react-hot-toast';
 import Api from '../../Api';
+import useRoutine from '../../Hooks/useRoutine';
 
 const Container = styled(motion.div)`
     display: flex;
@@ -82,7 +83,7 @@ const PreviewItemContainer = styled.div`
 
 const SelectedRoutin = ({ isSelectState, selectedRoutinState }) => {
     const [isSelect, setIsSelect] = isSelectState;
-    const [routins, setRoutins] = useState([]);
+    const routines = useRoutine();
     const [selectedRoutin, setSelectedRoutin] = selectedRoutinState;
 
     const onClickButton = () => {
@@ -126,18 +127,9 @@ const SelectedRoutin = ({ isSelectState, selectedRoutinState }) => {
         return selectedRoutin.content.map((x, i) => <PreviewItem data={x} key={i} />);
     };
 
-    const fetchRoutin = async () => {
-        const data = await Api.get('/lutin/preview');
-        setRoutins((prevState) => data.data.data);
-    };
-
-    useEffect(() => {
-        fetchRoutin();
-    }, []);
-
     return (
         <Container animate={{ y: isSelect ? -1000 : 0 }}>
-            <RoutinList>{routins ? routins.map((x) => <RoutinItem data={x} clicked={selectedRoutin.id === x.lutin_id} key={x.lutin_id} />) : '불러오는 중...'}</RoutinList>
+            <RoutinList>{routines ? routines.map((x) => <RoutinItem data={x} clicked={selectedRoutin.id === x.lutin_id} key={x.lutin_id} />) : '불러오는 중...'}</RoutinList>
             <RoutinPreview>
                 <PreviewItemList />
 

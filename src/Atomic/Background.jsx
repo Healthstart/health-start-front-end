@@ -50,3 +50,27 @@ export const Page = styled.div`
     padding: 2rem;
     user-select: none;
 `;
+
+export const Card = styled.div`
+    align-self: center;
+
+    cursor: pointer;
+
+    width: 30vw;
+    height: 80vh;
+
+    -webkit-box-shadow: 21px 0px 42px -8px rgba(0, 0, 0, 0.03);
+    box-shadow: 21px 0px 42px -8px rgba(0, 0, 0, 0.05);
+
+    background-color: #fcfcfc;
+
+    border: 1.3px solid #e6e6e6;
+    border-radius: 20px;
+
+    transition: 0.3s;
+    &:hover {
+        transform: translateY(-2px) scale(1.01);
+        -webkit-box-shadow: 21px 0px 42px -8px rgba(0, 0, 0, 0.1);
+        box-shadow: 21px 0px 42px -8px rgba(0, 0, 0, 0.1);
+    }
+`;
