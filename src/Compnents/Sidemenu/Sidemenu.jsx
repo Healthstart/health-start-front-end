@@ -74,14 +74,14 @@ const MenuList = styled.div`
     position: absolute;
     z-index: 0;
 
-    top: 330px;
+    top: 350px;
 
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 
     width: 100%;
-    height: 420px;
+    height: 350px;
 
     border-radius: 20px 0 0 0;
     /* background-color: #555555; */
@@ -193,7 +193,7 @@ const Sidemenu = ({ match }) => {
                     <Useremail>가입날짜: {dateCul()}</Useremail>
                 </Profile>
                 <MenuList>
-                    <Menulink
+                    {/* <Menulink
                         to={`${match.path}/`}
                         onClick={() => {
                             ChangeMenuState(1);
@@ -202,7 +202,7 @@ const Sidemenu = ({ match }) => {
                     >
                         <Settings color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 10 }} />
                         <MenuItemText>프로파일</MenuItemText>
-                    </Menulink>
+                    </Menulink> */}
                     <Menulink
                         to={`${match.path}/exercise`}
                         onClick={() => {
