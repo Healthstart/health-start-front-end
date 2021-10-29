@@ -25,20 +25,24 @@ const Container = styled(motion.div)`
 
 const RoutinList = styled.div`
     position: relative;
-    width: 50%;
+    width: 45%;
     padding: 1rem;
     height: 100%;
     overflow-y: scroll;
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
 
     &::after {
         position: absolute;
         content: '';
         top: 7%;
         right: 0;
-        width: 5px;
+        width: 2px;
         height: 86%;
-        background-color: rgba(20, 20, 20, 0.7);
-        border-radius: 30px;
+        background-color: rgb(134, 134, 134);
+        border-radius: 1000px;
     }
 `;
 
@@ -56,7 +60,7 @@ const ItemContainer = styled.div`
     flex-direction: column;
     justify-content: center;
 
-    width: 80%;
+    width: 90%;
     height: 15%;
     padding: 1rem 2rem;
     margin-bottom: 1rem;
@@ -142,7 +146,7 @@ const SelectedRoutin = ({ isSelectState, selectedRoutinState }) => {
     };
 
     return (
-        <Container animate={{ y: isSelect ? -1000 : 0 }}>
+        <Container initial={{ y: -90}} animate={{ y: isSelect ? -1000 : 0 }}>
             <RoutinList>{routines ? routines.map((x) => <RoutinItem data={x} clicked={selectedRoutin.id === x.lutin_id} key={x.lutin_id} />) : '불러오는 중...'}</RoutinList>
             <RoutinPreview>
                 <PreviewItemList />
