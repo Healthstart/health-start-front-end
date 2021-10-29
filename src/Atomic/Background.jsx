@@ -48,6 +48,7 @@ export const Page = styled.div`
     height: 100%;
 
     padding: 2rem;
+    user-select: none;
 `;
 
 export const Card = styled.div`

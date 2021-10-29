@@ -224,13 +224,13 @@ const Sidemenu = ({ match }) => {
                         <MenuItemText>루틴관리</MenuItemText>
                     </Menulink>
                     <Menulink
-                        to={`${match.path}/temp`}
+                        to={`${match.path}/post`}
                         onClick={() => {
                             ChangeMenuState(4);
                         }}
                         clicked={isActive[3]}
                     >
-                        <PlusCircle color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 10 }} />
+                        <Users color="gray" size={25} style={{ marginTop: 30, marginLeft: 90, marginRight: 13 }} />
                         <MenuItemText>커뮤니티</MenuItemText>
                     </Menulink>
                 </MenuList>

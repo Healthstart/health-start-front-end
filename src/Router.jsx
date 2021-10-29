@@ -7,6 +7,7 @@ import Sidemenu from './Compnents/Sidemenu/Sidemenu';
 import PermissionRoute from './Compnents/Route/PermissionRoute';
 import RoutinePage from './Pages/RoutinePage';
 import RoutineManagePage from "./Pages/RoutineManagePage";
+import PostPage from './Pages/PostPage';
 
 const Router = ({ match }) => {
     return (
@@ -17,6 +18,7 @@ const Router = ({ match }) => {
                     <PermissionRoute path={`${match.path}/`} exact component={ProfilePage} />
                     <PermissionRoute path={`${match.path}/exercise`} component={RoutinePage} />
                     <PermissionRoute path={`${match.path}/RoutineManagement`} component={RoutineManagePage} />
+                    <PermissionRoute path={`${match.path}/post`} component={PostPage} />
                     <PermissionRoute path={`${match.path}/temp`} component={TempPage} />
                 </Switch>
             </Dashboard>
