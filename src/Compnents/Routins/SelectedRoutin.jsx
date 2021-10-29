@@ -5,6 +5,7 @@ import { RoutinButton } from '../../Atomic/Buttons';
 import toast from 'react-hot-toast';
 import Api from '../../Api';
 import useRoutine from '../../Hooks/useRoutine';
+import { ChevronRight } from "react-feather";
 
 const Container = styled(motion.div)`
     display: flex;
@@ -15,7 +16,7 @@ const Container = styled(motion.div)`
     width: 90%;
     height: 90%;
 
-    background-color: #f1f1f1;
+    background-color: #fcfcfc;
     border-radius: 30px;
 
     top: 5%;
@@ -59,18 +60,30 @@ const ItemContainer = styled.div`
     height: 15%;
     padding: 1rem 2rem;
     margin-bottom: 1rem;
-    background-color: ${(props) => (props.clicked ? '#141414' : 'inherit')};
+    background-color: ${(props) => (props.clicked ? '#b3b3b3' : 'inherit')};
     color: ${(props) => (props.clicked ? '#fff' : '#141414')};
+    /* transform: translateX(${(props) => (props.clicked ? -3 : 0)}px); */
 
-    border-radius: 8px;
+    border-radius: 15px;
+    border: 2px solid #a0a0a07f;
     cursor: pointer;
 
+    position: relative;
+    transition: 0.3s;
     &:hover {
-        border: 2px solid #141414;
+        border: 2px solid #474747;
+        transform: translateX(3px);
     }
     &:last-child {
         margin: 0;
     }
+`;
+
+const Arrow = styled(ChevronRight)`
+    position: absolute;
+
+    right: 25px;
+    stroke: #6d6d6d;
 `;
 
 const PreviewItemContainer = styled.div`
@@ -105,6 +118,7 @@ const SelectedRoutin = ({ isSelectState, selectedRoutinState }) => {
             <ItemContainer clicked={clicked} onClick={onClicked}>
                 <h3>{data.lutin_name}</h3>
                 <p>{data.lutin_index}</p>
+                <Arrow />
             </ItemContainer>
         );
     };
