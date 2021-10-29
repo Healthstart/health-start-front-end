@@ -18,6 +18,7 @@ const Container = styled(motion.div)`
     left: 0;
 
     backdrop-filter: blur(5px);
+    overflow: hidden;
 `;
 
 const Content = styled(motion.div)`
