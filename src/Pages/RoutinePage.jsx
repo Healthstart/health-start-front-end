@@ -139,6 +139,10 @@ const RoutineBox = styled(motion.div)`
 
     border-radius: 30px;
     background-color: #eee;
+
+    border: 1px solid #c7c7c7;
+    -webkit-box-shadow: 21px 0px 42px -8px rgba(0, 0, 0, 0.03);
+    box-shadow: 21px 0px 42px -8px rgba(0, 0, 0, 0.05);
 `;
 
 const TimerIcon = styled.img`
